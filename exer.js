@@ -25,3 +25,20 @@
 // 22 / 2 = 11
 //  => 22 is 20 in base 11
 
+function findBase(age) {
+  if (age % 2) {
+    base = (age - 1) / 2
+    return `${age} is 21 in base ${base}`
+  } else {
+    base = age / 2
+    return `${age} is 20 in base ${base}`
+  }
+}
+
+console.log(findBase(22))
+
+// If the age is even
+  // Divide by two and that's 20 in base x
+
+// if the age is odd
+  // subtract 1 and divide the result by 2, and that's 21 in base x
