@@ -25,7 +25,7 @@
 // 22 / 2 = 11
 //  => 22 is 20 in base 11
 
-function findBase(age) {
+const findBase = (age) => {
   if (age % 2) {
     base = (age - 1) / 2
     return `${age} is 21 in base ${base}`
@@ -42,3 +42,28 @@ console.log(findBase(22))
 
 // if the age is odd
   // subtract 1 and divide the result by 2, and that's 21 in base x
+
+
+
+// PROBLEM #2
+// Reverse the order of the words
+// eg "Hi how are you" to "you are how hi"
+
+// input is a string
+// output is a string (reversed)
+
+function reverser(str) {
+  // split at the spaces
+  let strToArr = str.split(" ")
+  var revArr = []
+  // console.log(strToArr)
+  for (var i = strToArr.length - 1; i >= 0; i--) {
+    revArr.push(strToArr[i])
+  }
+  return revArr.join(" ")
+}
+// split() the input string
+// iterate backwards
+// place the strings in a new array
+// join the string
+// return it
