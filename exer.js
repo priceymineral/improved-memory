@@ -67,3 +67,18 @@ function reverser(str) {
 // place the strings in a new array
 // join the string
 // return it
+
+
+// PROBLEM #3
+// You are given a 2-dimensional integer matrix where each cell represents the number of coins in that cell
+//matrix = [
+//   [0, 3, 1, 1],
+//   [2, 0, 0, 4]
+// ]
+// Starting at matrix[0][0]
+// Find the max number of coins you can collect by the bottom right corner (in this case matrix[1][3])
+
+// input - 2-d integer matrix
+// output - integer
+// edge -
+// constraints - start at matrix[0][0], can only move right and bottom
