@@ -82,3 +82,27 @@ function reverser(str) {
 // output - integer
 // edge -
 // constraints - start at matrix[0][0], can only move right and bottom
+
+// inittialize a count
+// compare the right number to the bottom number
+// add the LARGER number at that cell to count
+// from the new cell, compare right to the bottom
+// add the LARGER number at the cell to count
+// ...
+
+function coinCollect(matrix) {
+  let m = 0
+  let n = 0
+  var count = matrix[m][n]
+
+  if (matrix[m][n + 1] >= matrix[m + 1][n]) {
+    count += matrix[m][n + 1]
+  } else {
+    count += matrix[m + 1][n]
+  }
+
+  return count
+}
+
+matrix = [ [0, 3, 1, 1], [2, 0, 0, 4] ]
+console.log(coinCollect(matrix))
