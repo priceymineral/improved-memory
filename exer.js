@@ -91,14 +91,37 @@ function reverser(str) {
 // ...
 
 function coinCollect(matrix) {
-  let m = 0
-  let n = 0
+
+  var max = matrix[0].length
+  var m = 0
+  var n = 0
   var count = matrix[m][n]
 
-  if (matrix[m][n + 1] >= matrix[m + 1][n]) {
-    count += matrix[m][n + 1]
-  } else {
-    count += matrix[m + 1][n]
+  function counter(matrix, m, n) {
+    console.log(`m=${m}, n=${n}`)
+
+    if (matrix[m][n + 1] >= matrix[m + 1][n]) {
+
+      count += matrix[m][n + 1]
+      if (n+1 >= max) {
+        return count
+      } else {
+        n+=1
+        return count + counter(matrix, m, n)
+      }
+
+    } else {
+
+      count += matrix[m + 1][n]
+      // if m+=1 >= max return count else
+      if (m+1 >= max) {
+        return count
+      } else {
+        m+=1
+        return count + counter(matrix, m, n)
+      }
+
+    }
   }
 
   return count
