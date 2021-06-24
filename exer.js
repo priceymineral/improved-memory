@@ -130,7 +130,23 @@ function coinCollect(matrix) {
 matrix = [ [0, 3, 1, 1], [2, 0, 0, 4] ]
 console.log(coinCollect(matrix))
 
+// Solution with Map()
+const solve = (matrix) => {
+  let m = matrix[0] ? matrix[0].length : -1;
+  let n = matrix.length;
+  let memo = new Map();
 
+  let help = (i, j) => {
+    let key = i + ',' + j;
+    if (memo.has(key)) return memo.get(key);
+    if (i === n-1 && j === m-1) return matrix[i][j];
+    if (i >= n || j >= m) return 0;
+    memo.set(key,  matrix[i][j] + Math.max(help(i+1, j), help(i, j+1)))
+
+    return memo.get(key);
+  }
+  return help(0, 0);
+}
 
 // // # PROBLEM 4
 // Given a binary tree root, return an inorder traversal of root as a list.
