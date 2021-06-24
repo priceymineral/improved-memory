@@ -191,3 +191,47 @@ const solve = (matrix) => {
 // Output
 // Visualize
 // [1, 0]
+
+//////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+
+let matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+];
+
+console.log(matrix);
+
+const rotator = (grid) => {
+  var newLength = grid[0].length;
+  // console.log('OG new length: ', newLength);
+  var rotated = [];
+
+  // iterate over rows
+  for (let i = 0; i < grid.length; i++) {
+    newLength-=1;
+    var row = []
+    for (let j = 0; j < grid[i].length; j++) {
+      // console.log('new length: ', newLength);
+      row.push(grid[j][newLength]);
+      // console.log(`(${i}, ${j}) => (${j}, ${newLength})`);
+    };
+    rotated.push(row);
+  };
+
+  return rotated;
+};
+
+let rotated = [
+    [3, 6, 9],
+    [2, 5, 8],
+    [1, 4, 7]
+]
+
+if (JSON.stringify(rotated) === JSON.stringify(rotator(matrix))) {
+  console.log('You got it, dude!')
+} else {
+  'watafak!';
+}
+rotator(matrix);
