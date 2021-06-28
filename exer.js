@@ -265,33 +265,41 @@ rotator(matrix);
 //   }
 // }
 
-for function solve(s1, s2) {
-  if (s2.includes(s1)) return true;
-  if (s1.length === 1) return false;
-  if (s1.length === s2.length && s1 !== s2) return false;
-  // save the last location of all the letters
-  for (var i = 0; i < s1.length - 1; i++) {
-    let currentLetter = s1[i]; // a, a
-    let nextLetter = s1[i + 1]; // a, a
+// for function solve(s1, s2) {
+//   if (s2.includes(s1)) return true;
+//   if (s1.length === 1) return false;
+//   if (s1.length === s2.length && s1 !== s2) return false;
+//   // save the last location of all the letters
+//   for (var i = 0; i < s1.length - 1; i++) {
+//     let currentLetter = s1[i]; // a, a
+//     let nextLetter = s1[i + 1]; // a, a
 
-    if (s2.includes(currentLetter)) { // true
-      lastLocation =
-          var index = s2.indexOf(currentLetter, i); // index = 1
-    } else {
-      return false;
-    }
+//     if (s2.includes(currentLetter)) { // true
+//       lastLocation =
+//           var index = s2.indexOf(currentLetter, i); // index = 1
+//     } else {
+//       return false;
+//     }
 
-    if (s2.indexOf(s1[i + 1], index + 1) > index) {
+//     if (s2.indexOf(s1[i + 1], index + 1) > index) {
 
-      if (s1[i + 2]) {
-        continue; //
-      } else {
-        return true;
-      }
-    } else {
-      return false;
-    }
-  }
-  return true;
-}
+//       if (s1[i + 2]) {
+//         continue; //
+//       } else {
+//         return true;
+//       }
+//     } else {
+//       return false;
+//     }
+//   }
+//   return true;
+//   }
+// }
+
+const solve = (s1, s2) => {
+  // iterate over s1
+  // check if s2 includes s1[i]
+  // if so, slice s2 up to and including the index where s1[i] is
+  // else
+  // return false
 }
