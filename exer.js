@@ -240,27 +240,58 @@ rotator(matrix);
 //////////////////////////////////////////////////////////////////////
 // PROBLEM 8
 // Given two lowercase alphabet strings s1 and s2, determine if s1 is a subsequence of s2.
-function solve(s1, s2) {
-  if (!s2 && !s1) return true; // if both empty, s1 IS a subsequence of s2
-  if (!s2) return false; // if only s2 is empty, s1 IS NOT a subsequence (unless also empty)
+// function solve(s1, s2) {
+//   if (!s2 && !s1) return true; // if both empty, s1 IS a subsequence of s2
+//   if (!s2) return false; // if only s2 is empty, s1 IS NOT a subsequence (unless also empty)
+//   if (s2.includes(s1)) return true;
+//   if (s1.length === 1) return false;
+
+//   for (let i = 0; i <= s1.length - 2; i++) {
+//     if (s2.indexOf(s1[i]) === -1) return false;
+
+//     if (s2.indexOf(s1[i + 1], s2.indexOf(s1[i]) + 1) > s2.indexOf(s1[i])) {
+
+//       if (s1.length === 2) return true;
+//       if (s2.indexOf(s1[i + 2], i + 2) > s2.indexOf(s1[i + 1])) {
+//         continue;
+//       } else {
+//         return false;
+//       }
+//     } else {
+//       return false;
+//     }
+
+//     return true;
+//   }
+// }
+
+for function solve(s1, s2) {
   if (s2.includes(s1)) return true;
   if (s1.length === 1) return false;
+  if (s1.length === s2.length && s1 !== s2) return false;
+  // save the last location of all the letters
+  for (var i = 0; i < s1.length - 1; i++) {
+    let currentLetter = s1[i]; // a, a
+    let nextLetter = s1[i + 1]; // a, a
 
-  for (let i = 0; i <= s1.length - 2; i++) {
-    if (s2.indexOf(s1[i]) === -1) return false;
-
-    if (s2.indexOf(s1[i + 1], s2.indexOf(s1[i]) + 1) > s2.indexOf(s1[i])) {
-
-      if (s1.length === 2) return true;
-      if (s2.indexOf(s1[i + 2], i + 2) > s2.indexOf(s1[i + 1])) {
-        continue;
-      } else {
-        return false;
-      }
+    if (s2.includes(currentLetter)) { // true
+      lastLocation =
+          var index = s2.indexOf(currentLetter, i); // index = 1
     } else {
       return false;
     }
 
-    return true;
+    if (s2.indexOf(s1[i + 1], index + 1) > index) {
+
+      if (s1[i + 2]) {
+        continue; //
+      } else {
+        return true;
+      }
+    } else {
+      return false;
+    }
   }
+  return true;
+}
 }
