@@ -241,5 +241,26 @@ rotator(matrix);
 // PROBLEM 8
 // Given two lowercase alphabet strings s1 and s2, determine if s1 is a subsequence of s2.
 function solve(s1, s2) {
+  if (!s2 && !s1) return true; // if both empty, s1 IS a subsequence of s2
+  if (!s2) return false; // if only s2 is empty, s1 IS NOT a subsequence (unless also empty)
+  if (s2.includes(s1)) return true;
+  if (s1.length === 1) return false;
 
+  for (let i = 0; i <= s1.length - 2; i++) {
+    if (s2.indexOf(s1[i]) === -1) return false;
+
+    if (s2.indexOf(s1[i + 1], s2.indexOf(s1[i]) + 1) > s2.indexOf(s1[i])) {
+
+      if (s1.length === 2) return true;
+      if (s2.indexOf(s1[i + 2], i + 2) > s2.indexOf(s1[i + 1])) {
+        continue;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+
+    return true;
+  }
 }
