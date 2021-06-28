@@ -38,10 +38,10 @@ const findBase = (age) => {
 console.log(findBase(22))
 
 // If the age is even
-  // Divide by two and that's 20 in base x
+// Divide by two and that's 20 in base x
 
 // if the age is odd
-  // subtract 1 and divide the result by 2, and that's 21 in base x
+// subtract 1 and divide the result by 2, and that's 21 in base x
 
 
 
@@ -103,10 +103,10 @@ function coinCollect(matrix) {
     if (matrix[m][n + 1] >= matrix[m + 1][n]) {
 
       count += matrix[m][n + 1]
-      if (n+1 >= max) {
+      if (n + 1 >= max) {
         return count
       } else {
-        n+=1
+        n += 1
         return count + counter(matrix, m, n)
       }
 
@@ -114,10 +114,10 @@ function coinCollect(matrix) {
 
       count += matrix[m + 1][n]
       // if m+=1 >= max return count else
-      if (m+1 >= max) {
+      if (m + 1 >= max) {
         return count
       } else {
-        m+=1
+        m += 1
         return count + counter(matrix, m, n)
       }
 
@@ -127,7 +127,7 @@ function coinCollect(matrix) {
   return count
 }
 
-matrix = [ [0, 3, 1, 1], [2, 0, 0, 4] ]
+matrix = [[0, 3, 1, 1], [2, 0, 0, 4]]
 console.log(coinCollect(matrix))
 
 // Solution with Map()
@@ -139,9 +139,9 @@ const solve = (matrix) => {
   let help = (i, j) => {
     let key = i + ',' + j;
     if (memo.has(key)) return memo.get(key);
-    if (i === n-1 && j === m-1) return matrix[i][j];
+    if (i === n - 1 && j === m - 1) return matrix[i][j];
     if (i >= n || j >= m) return 0;
-    memo.set(key,  matrix[i][j] + Math.max(help(i+1, j), help(i, j+1)))
+    memo.set(key, matrix[i][j] + Math.max(help(i + 1, j), help(i, j + 1)))
 
     return memo.get(key);
   }
@@ -196,9 +196,9 @@ const solve = (matrix) => {
 ///////////////////////////////////////////////////////////////////////////
 
 let matrix = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
 ];
 
 console.log(matrix);
@@ -210,7 +210,7 @@ const rotator = (grid) => {
 
   // iterate over rows
   for (let i = 0; i < grid.length; i++) {
-    newLength-=1;
+    newLength -= 1;
     var row = []
     for (let j = 0; j < grid[i].length; j++) {
       // console.log('new length: ', newLength);
@@ -224,9 +224,9 @@ const rotator = (grid) => {
 };
 
 let rotated = [
-    [3, 6, 9],
-    [2, 5, 8],
-    [1, 4, 7]
+  [3, 6, 9],
+  [2, 5, 8],
+  [1, 4, 7]
 ]
 
 if (JSON.stringify(rotated) === JSON.stringify(rotator(matrix))) {
@@ -235,3 +235,11 @@ if (JSON.stringify(rotated) === JSON.stringify(rotator(matrix))) {
   'watafak!';
 }
 rotator(matrix);
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+// PROBLEM 8
+// Given two lowercase alphabet strings s1 and s2, determine if s1 is a subsequence of s2.
+function solve(s1, s2) {
+
+}
