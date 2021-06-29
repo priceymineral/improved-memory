@@ -296,16 +296,33 @@ rotator(matrix);
 //   }
 // }
 
+// const solve = (s1, s2) => {
+//   for (let i = 0; i < s1.length; i++) {
+//     if (s2.includes(s1[i])) {
+//       s2 = s2.slice(s2.indexOf(s1[i]) + 1);
+//     } else {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
 const solve = (s1, s2) => {
-  for (let i = 0; i < s1.length; i++) {
-    if (s2.includes(s1[i])) {
-      s2 = s2.slice(s2.indexOf(s1[i]) + 1);
+  // check if the leter
+  let helper = (str1, str2) => {
+    if (str2.includes(str1[0])) {
+      str1 = str1.slice(1);
+      str2 = str2.slice(s2.indexOf(str1[0]) + 1)
+      helper(str1, str2);
     } else {
       return false;
     }
   }
+  helper(s1, s2);
+
   return true;
 }
+
+
 // class Solution {
 //     solve(s1, s2) {
 //         var answer = true;
