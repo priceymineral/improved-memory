@@ -297,9 +297,12 @@ rotator(matrix);
 // }
 
 const solve = (s1, s2) => {
-  // iterate over s1
-  // check if s2 includes s1[i]
-  // if so, slice s2 up to and including the index where s1[i] is
-  // else
-  // return false
+  for (let i = 0; i < s1.length; i++) {
+    if (s2.includes(s1[i])) {
+      s2 = s2.slice(s2.indexOf(s1[i]) + 1);
+    } else {
+      return false;
+    }
+  }
+  return true;
 }
