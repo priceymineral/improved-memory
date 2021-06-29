@@ -306,3 +306,12 @@ const solve = (s1, s2) => {
   }
   return true;
 }
+// class Solution {
+//     solve(s1, s2) {
+//         var answer = true;
+//         for (let i = 0; i < s1.length; i++) {
+//             s2.includes(s1[i]) ? s2 = s2.slice(s2.indexOf(s1[i]) + 1) : answer = false
+//         }
+//         return answer;
+//     }
+// }
