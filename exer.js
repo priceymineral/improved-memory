@@ -395,3 +395,39 @@ function twoNumberSum(array, targetSum) {
 // 	help(leftPointer, rightPointer);
 
 // }
+
+// THree number sum
+function threeNumberSum(array, targetSum) {
+  // input is an arrya of distinct integers and an integer
+  // output is a 2-d array of all the triplets (sorted) that add up to targetSum
+  // edge cases - no triplet sum adds up to targetSum
+  // constraints - everything sorted
+
+  // sort the array in ASCENDING order
+  array.sort((a, b) => a - b);
+  // initialize result array var
+  let triplets = [];
+
+  // iterate
+  for (var i = 0; i < array.length - 2; i++) {
+    // save current number
+    var firstNum = array[i];
+    // iterate starting one index higher than first number
+    for (var j = i + 1; j < array.length - 1; j++) {
+      // save current number
+      var secondNum = array[j];
+      // iterate starting one index higher than second number
+      for (var k = j + 1; k < array.length; k++) {
+        // if the sum of the three adds up to targetSum
+        var thirdNum = array[k];
+        // put in an array and push to result array
+        if (firstNum + secondNum + thirdNum === targetSum) {
+          triplets.push([firstNum, secondNum, thirdNum]);
+        };
+      };
+    };
+  };
+
+  // return result array
+  return triplets;
+}
