@@ -43,7 +43,8 @@ console.log(findBase(22))
 // if the age is odd
 // subtract 1 and divide the result by 2, and that's 21 in base x
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // PROBLEM #2
 // Reverse the order of the words
@@ -332,3 +333,32 @@ const solve = (s1, s2) => {
 //         return answer;
 //     }
 // }
+
+// PROBLEM 9
+// Two Number Sum
+// test
+// var array = [3, 5, -4, 8, 11, 1, -1, 6];
+// var target = 10;
+
+function twoNumberSum(array, targetSum) {
+  array.sort((a, b) => a - b);
+  // put a pointer at the beginning and one at the end
+  var leftPointer = 0;
+  var rightPointer = array.length - 1;
+
+  while (leftPointer < rightPointer) {
+    let sum = array[leftPointer] + array[rightPointer];
+
+    if (sum === targetSum) {
+      // console.log([array[leftPointer], array[rightIdx]]);
+      return [array[leftPointer], array[rightPointer]];
+
+    } else if (sum > targetSum) {
+      // console.log('more');
+      rightPointer -= 1;
+    } else {
+      // console.log('less');
+      leftPointer += 1
+    }
+  }
+}
