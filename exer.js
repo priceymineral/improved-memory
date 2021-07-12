@@ -362,3 +362,36 @@ function twoNumberSum(array, targetSum) {
     }
   }
 }
+
+// Why does this not work?
+// function twoNumberSum(array, targetSum) {
+// 	// with pointers
+
+// 	// sort the array in ASCENDING order
+// 	array.sort((a,b) => a - b);
+// 	// put a pointer at the beginning and one at the end
+// 	var leftPointer = 0;
+// 	var rightPointer = array.length - 1;
+
+// 	const help = (leftIdx, rightIdx) => {
+// 		let sum = array[leftIdx] + array[rightIdx];
+
+// 		if (sum === targetSum) {
+
+// 			return [array[leftIdx], array[rightIdx]];
+
+// 		} else if (sum > targetSum) {
+
+// 			rightIdx -= 1;
+// 			help(leftIdx, rightIdx);
+
+// 		} else {
+
+// 			leftIdx += 1;
+// 			help(leftIdx, rightIdx);
+
+// 		}
+// 	}
+// 	help(leftPointer, rightPointer);
+
+// }
