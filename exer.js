@@ -981,3 +981,160 @@ function path(N, A, B) {
 // let N = 4;
 // path(N,A,B);
 
+function solution(A, D) {
+  let sum = 0;
+
+  for (let i = 1; i <= 12; i++) {
+
+    let card_payment = 0;
+    let card_transaction = 0;
+
+    for (let j = 1; j < A.length; j++) {
+      // console.log(D[i].split("-"));
+      let month = parseInt(D[i].split("-")[1]); // month without 0's eg 04->4
+      // console.log("month: ", month);
+      if (month == i) {
+        sum += A[j];
+        if (A[j] < 0) {
+          card_payment++
+          card_transaction += A[j]
+        }
+      }
+    }
+  }
+
+  if (card < 3 || card > -100) {
+    sum -= 5
+  }
+  return sum;
+}
+
+let A = [1, -1, 0, -105, 1];
+let D = ["2020-12-31", "2020-04-04", "2020-04-04", "2020-04-14", "2020-07-12"];
+solution(A, D);
+
+  // let sentence = S.replace(/\./gi, "**").replace(/\!/gi, "**").replace(/\?/g, "**");
+
+
+  // function photos(S){
+
+  //   let arr = S.split("\n");
+  //   let length = arr.length;
+  //   let ext_arr = [];
+  //   let city_arr = [];
+  //   let time_arr = [];
+
+  //   for (let i = 0; i < length; i++) {
+  //     let temp = arr[i].split(",");
+  //     let t_ext = temp[0].split(".")[1];
+
+  //     ext_arr.push(t_ext);
+  //     city_arr.push(temp[1]);
+  //     time_arr.push(new Date(temp[2]).getTime());// conv str to timestamp
+  //   }
+
+  //   let n_arr = [];
+
+  //   for (let i =0; i<length;i++) {
+  //     let rank = 1;
+  //     let city_cnt = 0;
+
+  //     for (let j = 0; j < length; j++) {
+
+  //       // if same city
+  //       if (city_arr[i] == city_arr[j]) {
+  //         city_cnt++;
+  //         // compare timestamp
+  //         if(time_arr[i] >time_arr[j]) {
+  //           rank++;
+  //         }
+  //       }
+
+  //     }
+
+  //     let prefix = new Array(city_cnt.toString().length - rank.toString().length).join("0"); // prefix 0
+  //     n_arr.push(city_arr[i]+prefix+rank+"."+ext_arr[i]);
+
+  //   }
+  //   return (n_arr.join("\n"));
+  // }
+
+
+  // // let S = "photo.jpg, Warsaw, 2013-09-05 14:08:15\njohn.png, London, 2015-06-20 15:13:22\n myFriends.png, Warsaw, 2013-09-05 14:07:13\nEiffel.jpg, Paris, 2015-07-23 08:03:02\npisatower.jpg, Paris, 2015-07-22 23:59:59\nBoB.jpg, London, 2015-08-05 00:02:03\nnotredam.png, Paris, 2015-09-01 12:00:01\nme.jpg, Warsaw, 2013-09-06 15:40:22\na.png, Warsaw, 2016-02-13 13:33:50\nb.jpg, Warsaw, 2016-01-02 15:12:22\nc.jpg, Warsaw, 2016-01-02 14:34:30\nd.jpg, Warsaw, 2016-01-02 15:15:01\ne.png, Warsaw, 2016-01-02 09:49:09\nf.png, Warsaw, 2016-01-02 10:55:32\ng.jpg, Warsaw, 2016-02-29 22:13:11";
+
+  // // solution(S);
+
+
+  // function solution(S)
+  // {
+  //     let string = "";
+  //     let arr = S.split("\n");
+  //     // console.log('arr: ', arr);
+  //     let len = arr.length;
+  //     let city_arr = [];
+  //     let extension_arr = [];
+  //     let time_arr = [];
+
+  //     // make an array for the cities, extensions, timestamps
+
+  //     for(let i=0;i<len;i++)
+  //     {
+  //         let buff = arr[i].split(","); // split each photo at the comma, 3 element arra
+  //         // [format, city, date-time]
+
+  //         extension_arr.push(buff[0].split(".")[1]); // get the extension ["photo:", "jpg"]
+
+  //         city_arr.push(buff[1]);
+
+  //         time_arr.push(new Date(buff[2]).getTime());
+
+  //         // console.log(buff[2], new Date(buff[2]), new Date(buff[2]).getTime() );
+  //     }
+  //     // console.log("city arr: ", city_arr);
+  //     // console.log("ext arr: ", extension_arr);
+
+
+  //     let name_arr = [];
+
+  //     // iterate from 0 to number of photos -1
+  //     for(let i=0;i<len;i++)
+  //     {
+  //         let cnt = 0;
+  //         let rank = 1;
+
+  //         // iterate from 0 to number of photos  -1
+  //         for(let j=0;j<len;j++)
+  //         {
+  //             // increment count for every city that matches
+  //             if(city_arr[j] == city_arr[i])
+  //             {
+  //                 // increment count
+  //                 cnt++;
+  //                 // increment rank for every time current is > comparison
+  //                 if(time_arr[i]>time_arr[j])
+  //                 {
+  //                   // increment rank
+  //                   rank++;
+  //                 }
+  //             }
+  //         }
+  //         console.log('cnt: ', cnt);
+  //         console.log('rank: ', rank);
+  //         let prefix = new Array(cnt.toString().length - rank.toString().length+1).join("0");
+  //         console.log(new Array(cnt.toString().length - rank.toString().length+1));
+  //         console.log('prefix: ',prefix);
+
+  //         name_arr.push(city_arr[i]+prefix+rank+"."+extension_arr[i]);
+  //         break;
+  //     }
+  //     // console.log(name_arr.join("\n"));
+  // }
+
+
+  // // solution("photo.jpg, Warsaw, 2013-09-05 14:08:15\njohn.png, London, 2015-06-20 15:13:22\n myFriends.png, Warsaw, 2013-09-05 14:07:13\nEiffel.jpg, Paris, 2015-07-23 08:03:02\npisatower.jpg, Paris, 2015-07-22 23:59:59\nBoB.jpg, London, 2015-08-05 00:02:03\nnotredam.png, Paris, 2015-09-01 12:00:01\nme.jpg, Warsaw, 2013-09-06 15:40:22\na.png, Warsaw, 2016-02-13 13:33:50\nb.jpg, Warsaw, 2016-01-02 15:12:22\nc.jpg, Warsaw, 2016-01-02 14:34:30\nd.jpg, Warsaw, 2016-01-02 15:15:01\ne.png, Warsaw, 2016-01-02 09:49:09\nf.png, Warsaw, 2016-01-02 10:55:32\ng.jpg, Warsaw, 2016-02-29 22:13:11");
+
+
+
+  // // let arr = new Array(4);
+  // // console.log('arr: ', arr);
+  // // console.log(arr.join("0"));
