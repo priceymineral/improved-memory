@@ -431,3 +431,553 @@ function threeNumberSum(array, targetSum) {
   // return result array
   return triplets;
 }
+
+// getTotalPrice([
+//   { product: "Milk", quantity: 1, price: 1.50 },
+//   { product: "Eggs", quantity: 12, price: 0.10 },
+//   { product: "Bread", quantity: 2, price: 1.60 },
+//   { product: "Cheese", quantity: 1, price: 4.50 }
+// ]) ➞ 10.4
+
+// var groceries = [
+//   { product: "Milk", quantity: 1, price: 1.50 },
+//   { product: "Eggs", quantity: 12, price: 0.10 },
+//   { product: "Bread", quantity: 2, price: 1.60 },
+//   { product: "Cheese", quantity: 1, price: 4.50 }
+// ];
+// var groceries = [1, 2, 3, 4]
+// groceries.forEach(function(products){
+//   console.log(products)
+// })
+
+// const singles = groceries.filter(amount => amount.quantity < 2)
+
+// console.log(singles);
+
+
+
+
+
+
+
+
+
+
+
+// function getTotalPrice(groceries) {
+// // input is an array of objects
+// // output is the total price of all the objects, a number
+
+// // create a total variable
+// var totalPrice = 0;
+// // iterate over array
+// for (var i = 0; i < groceries.length; i++) {
+//   // create a product variable
+//   var currentProduct = groceries[i];
+//   // create a product total var
+//   var productTotal = currentProduct.price * currentProduct.quantity;
+//   // add price to total
+//   totalPrice += productTotal;
+// // close iteration
+// }
+// return totalPrice;
+// return total
+// }
+
+// // assertFunction
+
+// function assertEqual(actual, expected, testName) {
+//   if (actual === expected) {
+//     console.log('Passed!');
+//   } else {
+//     console.log('Failed! [' + testName + ']')
+//   }
+// }
+
+// // testFunctions
+
+// var consoleOutput = getTotalPrice(groceries);
+// // console.log(consoleOutput)
+// var desiredOutput = 10.40;
+// assertEqual(consoleOutput, desiredOutput, 'should match total price for groceries'
+
+// can you slice a number
+
+// var num = 2434335;
+// console.log('num:', num.slice(1))
+
+// convert to string
+// return splice from
+
+
+
+
+// you can write to stdout for debugging purposes, e.g.
+// console.log('this is a debug message');
+// A is the array with the peoples names
+// B is the array with the numbers
+// P is a string of length M representing a partial phone #
+
+
+// S - string representing a phone #
+// N - number of characters in S
+// spaces and dashes in S can be ignored
+
+// Reformat S such that digits are grouped in 3's
+// separated by dashes (last block or 2 can have length 2)
+
+// e.g.
+// let S = "00-44  48 555 8361"
+// => S = "004-448-555-583-61"
+
+// you can write to stdout for debugging purposes, e.g.
+// console.log('this is a debug message');
+
+// function solution(S) {
+//     // write your code in JavaScript (Node.js 8.9.4)
+//     // remove space from the input string
+//     let temp = S.split(" ").join("");
+//     // console.log('temp:', temp);
+
+//     // remove - from the input string
+//     temp = temp.split("-").join("");
+//     // console.log('temp2:', temp);
+
+//     // calculate string length
+//     let N = temp.length;
+//     let result = [];
+//     let cnt = 0;
+//     // set up reformat mode(Mode 0: ***-***, Mode 1: **-**, Mode 2: ***-**)
+//     switch(N%3)
+//     {
+//         case 0:
+//             for(let i=0;i<N;i++)
+//             {
+//                 result.push(temp[i]);
+//                 // push dash after every 3 number (except final number)
+//                 if(cnt%3==2 && i<N-1)
+//                     result.push("-")
+//                 cnt++;
+//             }
+//         break;
+//         case 1:
+//             for(let i=0;i<N-4;i++)
+//             {
+//                 result.push(temp[i]);
+//                 // push dash after every 3 number
+//                 if(cnt%3==2)
+//                     result.push("-")
+//                 cnt++;
+//             }
+//             // final tag number
+//             result.push(temp[N-4],temp[N-3],"-",temp[N-2], temp[N-1]);
+
+
+//         break;
+//         case 2:
+//             for(let i=0;i<N-2;i++)
+//             {
+//                 result.push(temp[i]);
+//                 // push dash after every 3 number
+//                 if(cnt%3==2)
+//                     result.push("-")
+//                 cnt++;
+//             }
+//             // final tag number
+//             result.push(temp[N-2],temp[N-1]);
+//         break;
+//     }
+//     // console.log('result:', result);
+//     return(result.join(""));
+// }
+
+// var S = "00-44  48 555 8361"
+// console.log(S.split(" ").join(""))
+// solution(S);
+
+// let Y = 2014;
+// let A = "April";
+// let B = "May";
+// let W = "Wednesday";
+
+const answer = (Y, A, B, W) => {
+  // given the first day of the year, can extrapolate the first day of the month
+  // determine if it's a leap year
+  // output - integer of the number of weeks
+  // write your code in JavaScript (Node.js 8.9.4)
+  let days = {
+    "Monday": 0,
+    "Tuesday": 1,
+    "Wednesday": 2,
+    "Thursday": 3,
+    "Friday": 4,
+    "Saturday": 5,
+    "Sunday": 6
+  };
+
+  let n_month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+  let l_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+
+  if (Y % 4 == 0)
+    // if leap year, change 28 => 29
+    l_month[1]++;
+
+  let calc = 0;
+
+  // iterate from 0 - 2
+  for (let i = 0; i < n_month.indexOf(A); i++) {
+    // calc = number of days up to April
+    calc += l_month[i];
+  }
+  console.log('days: ', calc);
+
+  // consider Jan 1st day, calculate day of starting month
+  // 1 ?WHy is wednesday 2, not 3? One day hasn't elapsed until Tuesday
+  // if the first is Monday, then you add 0 days... Wednesday you add 2 days
+  // if it's been 6 days, then it's Sunday, 7 is Monday again
+  calc = (calc + days[W]) % 7;
+  console.log('new days: ', calc); // 1, Tuesday
+
+  // find the 1st Monday for flight
+  // ?Why does this work? Add 1 because days start with 1
+  let f_m = (7 - calc) + 1;
+
+  calc = 0;
+  // iterate from 0 - 4
+  for (let i = 0; i < n_month.indexOf(B) + 1; i++) {
+    // calculate the number of days up to May
+    calc += l_month[i];
+  }
+
+  // consider Jan 1th day, calculate day of starting month
+  calc = (calc + days[W]) % 7 - 1; // ?WHY is it -1?
+  console.log('calc again: ', calc);
+
+  // find the last Sunday for flight
+  //        #days[4] - calc+1
+  let l_s = l_month[n_month.indexOf(B)] - (calc + 1);
+
+  let sum = 0;
+  for (let i = n_month.indexOf(A); i < n_month.indexOf(B) + 1; i++) {
+    sum += l_month[i];
+  }
+
+  sum = sum - (f_m - 1) - (l_month[n_month.indexOf(B)] - l_s);
+  return (sum / 7);
+}
+
+// answer(Y, A, B, W);
+// // It's been 5 days since wednesday (2) => Monday (0)
+// console.log((5+2)%7)
+
+// you can write to stdout for debugging purposes, e.g.
+// console.log('this is a debug message');
+
+// function pathfinder(N, A, B) {
+//     // write your code in JavaScript (Node.js 8.9.4)
+//     let path = [];
+
+//     for(let i=0;i<A.length;i++) {
+//         let temp = "";
+//         // log all the paths, smallest number first
+//         if (A[i]>B[i]) {
+//           temp = temp + B[i] + "-" + A[i];
+//         } else {
+//           temp = temp + A[i] + "-" + B[i];
+//         }
+
+//         path.push(temp);
+//         console.log('path: ', path);
+//      }
+
+//     // iterate from 1 to 3
+//     for (let i=1;i<N;i++) {
+//         let temp = "";
+//         temp = i + "-" + (i+1);
+//         console.log('temp: ', temp);
+//         if(path.indexOf(temp)<0)
+//             return false;
+//     }
+
+//     return true;
+// }
+
+// let N = 4;
+// let A = [1, 2, 1, 3];
+// let B = [2, 4, 3, 4];
+
+// let N = 4;
+// let A = [1, 2, 4, 4, 3];
+// let B = [2, 3, 1, 3, 1];
+// pathfinder(N, A, B);
+
+// /////////////////////////////////////////////////////////////////////////////
+function solution(A, B, P) {
+  let list = [];
+
+  for (let i = 0; i < B.length; i++) {
+    if (B[i].indexOf(P) > -1) {
+      let contact = {
+        "name": A[i],
+        "number": B[i]
+      }
+
+      list.push(contact);
+    }
+  }
+
+  if (!list.length) return "NO CONTACT";
+
+  list.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+
+  return list[0].name;
+}
+
+// let A = ["pim", "pom", "apas"];
+// let B = ["999999999", "777888999", "099994444"];
+// let P = "9999";
+// solution(A, B, P);
+////////////////////////////////////////////////////////////////////////////////////
+
+// string reformat
+
+// e.g.
+// let S = "00-44 48 5555 8361"
+// ==> "004-448-555-583-61"
+
+// N is an integer b/w 2-100
+// S contains only digits (at least 2)
+
+function formatter(S) {
+  // remove all spaces
+  S = S.split(" ").join("");
+  // remove all "-"
+  S = S.split("-").join("");
+
+  console.log(S.length);
+  let newS = [];
+  let count = 0;
+
+  switch (S.length % 3) {
+    case 0:
+      console.log('0');
+      for (let i = 0; i < S.length; i++) {
+        count++;
+        newS.push(S[i])
+        if (count === 3 && i < S.length - 1) {
+          newS.push("-");
+          count = 0;
+        };
+      };
+      break;
+
+    case 1:
+      console.log('1');
+      for (let i = 0; i < S.length - 4; i++) {
+        count++;
+        newS.push(S[i]);
+        if (count === 3) {
+          newS.push("-");
+          count = 0;
+        }
+      }
+      newS.push(S[S.length - 4], S[S.length - 3], "-", S[S.length - 2], S[S.length - 1]);
+      break;
+
+    // 2 : last set is 2
+    case 2:
+      console.log('2');
+      // iterate over S from 0 to length - 3
+      for (let i = 0; i < S.length - 2; i++) {
+        count++;
+        newS.push(S[i]);
+        if (count === 3) {
+          newS.push("-");
+          count = 0;
+        }
+      }
+
+      // add the last 2 formatted
+      newS.push(S[S.length - 2], S[S.length - 1]);
+      break;
+
+    default:
+      console.log('Somn went wrong');
+
+  }
+
+  console.log(newS);
+  // return new S
+  return newS.join("");
+
+}
+
+// let S = "00-44 48 5555 8361"
+// formatter(S);
+////////////////////////////////////////////////////////////////////////////////
+
+// let Y = 2014; // Year of the vacation
+// let A = "April"; // firts Month of vacation
+// let B = "May"; // last Month of vacation
+// let W = "Wednesday"; // day of Jan 1st
+
+// input is : ^
+// OUTPUT is an INTEGER representing the number of weeks available for vacay
+
+function vacation(Y, A, B, W) {
+  // initialize an object with the months and the number of days
+  let months = {
+    "January": 31,
+    "February": 28,
+    "March": 31,
+    "April": 30,
+    "May": 31,
+    "June": 30,
+    "July": 31,
+    "August": 31,
+    "September": 30,
+    "October": 31,
+    "November": 30,
+    "December": 31
+  };
+
+  let days = {
+    "Monday": 0,
+    "Tuesday": 1,
+    "Wednesday": 2,
+    "Thursday": 3,
+    "Friday": 4,
+    "Saturday": 5,
+    "Sunday": 6
+  }
+
+  // let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+
+  // Find the first monday when Jon can fly out
+  // find the day of the first of this month
+  // find if leap year
+  // if year is divisible by 4, feb has 29 days
+  if (Y % 4 === 0) {
+    months.February = 29;
+  }
+  // find the number of days from Jan 1 to Apr 1
+  // for in loop up to April
+  let daysToA = 0;
+  for (const month in months) {
+    if (month === A) {
+      break;
+    } else {
+      daysToA += months[month];
+    }
+  }
+
+  let totalDays = daysToA + days[W];
+  let dayValue = totalDays % 7;
+  console.log(totalDays % 7);
+  let dayOfTheWeek = Object.keys(days).find(key => days[key] === dayValue);;
+  // console.log(dayOfTheWeek);
+  // Tuesday April 1st
+  // Determine what day of the week is Apr 1
+  // Determine the first day he can fly out
+  // how to determine the difference between the day and MONDAY
+  let daysToSubtract = 6 - dayValue;
+  // console.log(daysToSubtract);
+  let daysToVacation = totalDays + daysToSubtract
+  console.log('days to vacation: ', daysToVacation);
+
+  // Find the last Sunday Jon can fly back
+  let daysToB = 0;
+  for (const month in months) {
+    daysToB += months[month];
+    if (month === B) {
+      break;
+    }
+  }
+  // find the number of days to end of month
+  console.log('days to B: ', daysToB);
+  // determine which day of the week it is
+  let lastDayOfBValue = daysToB % 7;
+  console.log('lastDayOfBValue: ', lastDayOfBValue);
+  let lastDayOfVacay = daysToB - lastDayOfBValue;
+  console.log('lastDay of vacay: ', lastDayOfVacay);
+  // console.log('last day of B: ', lastDayOfB);
+  // find the first sunday before it
+
+  // divide the number of days by 7 and return
+  let totalDaysOfVacay = lastDayOfVacay - daysToVacation;
+  console.log('total days of vacay: ', totalDaysOfVacay);
+  // find the number of days between the sunday he flies back and the monday he flies out
+  // divide by 7
+  let totalWeeks = totalDaysOfVacay / 7;
+
+  return Math.floor(totalWeeks);
+
+
+}
+
+// let Y = 2014; // Year of the vacation
+// let A = "April"; // firts Month of vacation
+// let B = "May"; // last Month of vacation
+// let W = "Wednesday"; // day of Jan 1st
+
+// vacation(2014, A, B, W)
+// 2012/4
+
+////////////////////////////////////////////////////////////////////////////////////
+
+// Graph consisting of:
+// N vertices (1 through N)
+// M edges
+// described by two arrays (A, B) both length M
+// (A[K], B[K]) describes edge b/w vertex A[K] and B[K]
+// K from 0 through M-1
+
+// Determine if there's a direct path from vertex 1 to vertex N
+// going through all the vertices, one by one, in increasing order
+
+function path(N, A, B) {
+
+  let myMap = new Map([A, B]);
+  console.log('my map: ', myMap);
+
+  console.log(myMap.keys());
+  let connections = []
+  let M = A.length;
+
+  for (let i = 0; i < M; i++) {
+    let pair = A[i] + "-" + B[i];
+    connections.push(pair);
+  }
+
+  // console.log(connections.includes('1-5'));
+  // make a list of all the vertices connecting one by one in ascending order
+  // iterate through list from 1 to N-1, inclusive
+  for (let j = 1; j < N; j++) {
+    console.log(j);
+    // make the pair with a dash as a string
+    if (connections.includes(j + "-" + (j + 1)) || connections.includes((j + 1) + "-" + j)) {
+      console.log('in continue: ');
+      continue;
+    } else {
+      console.log('in false');
+      return false;
+    }
+  }
+
+  return true;
+}
+
+// let A = [1, 2, 4, 4, 3];
+// let B = [2, 3, 1, 1, 1];
+// let N = 4;
+// path(N,A,B);
+
