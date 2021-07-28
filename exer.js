@@ -35,14 +35,6 @@ const findBase = (age) => {
   }
 }
 
-console.log(findBase(22))
-
-// If the age is even
-// Divide by two and that's 20 in base x
-
-// if the age is odd
-// subtract 1 and divide the result by 2, and that's 21 in base x
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -128,26 +120,42 @@ function coinCollect(matrix) {
   return count
 }
 
-matrix = [[0, 3, 1, 1], [2, 0, 0, 4]]
-console.log(coinCollect(matrix))
+// matrix = [[0, 3, 1, 1], [2, 0, 0, 4]]
+// console.log(coinCollect(matrix))
 
-// Solution with Map()
-const solve = (matrix) => {
-  let m = matrix[0] ? matrix[0].length : -1;
-  let n = matrix.length;
+// // Solution with Map()
+const coinCollectWithMap = (matrix) => {
+  let columns = matrix[0] ? matrix[0].length : -1; // 4
+  let rows = matrix.length; // 2
   let memo = new Map();
 
   let help = (i, j) => {
     let key = i + ',' + j;
-    if (memo.has(key)) return memo.get(key);
-    if (i === n - 1 && j === m - 1) return matrix[i][j];
-    if (i >= n || j >= m) return 0;
+    // '0-0'
+    // '1-0'
+    if (memo.has(key)) {
+      console.log(i, j, memo.get(key));
+      return memo.get(key);
+    };
+    // '0-0' not in memo
+    // '1-0' not in memo
+    if (i === rows - 1 && j === columns - 1) return matrix[i][j];
+    // if you're at the end, return number of coins at the end
+    if (i >= rows || j >= columns) return 0;
+    // out of bounds return 0
     memo.set(key, matrix[i][j] + Math.max(help(i + 1, j), help(i, j + 1)))
+    // set '0-0' to ==> 0 + max( matrix[1][0], matrix[0][1] )
+    // set '1-0' t0 ==> 2 + max( matrix[2][0], matrix[1][1] )
 
+    // console.log(memo);
     return memo.get(key);
   }
   return help(0, 0);
 }
+let coins = [[1, 3, 1, 1],  // 0 + max(2, 3)
+[2, 0, 0, 4]]; // (1, 0) =>
+
+console.log(coinCollectWithMap(coins));
 
 // // # PROBLEM 4
 // Given a binary tree root, return an inorder traversal of root as a list.
@@ -202,8 +210,6 @@ let matrix = [
   [7, 8, 9]
 ];
 
-console.log(matrix);
-
 const rotator = (grid) => {
   var newLength = grid[0].length;
   // console.log('OG new length: ', newLength);
@@ -230,12 +236,12 @@ let rotated = [
   [1, 4, 7]
 ]
 
-if (JSON.stringify(rotated) === JSON.stringify(rotator(matrix))) {
-  console.log('You got it, dude!')
-} else {
-  'watafak!';
-}
-rotator(matrix);
+// if (JSON.stringify(rotated) === JSON.stringify(rotator(matrix))) {
+//   console.log('You got it, dude!')
+// } else {
+//   'watafak!';
+// }
+// rotator(matrix);
 
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
@@ -989,7 +995,7 @@ function solution(A, D) {
     let card_payment = 0;
     let card_transaction = 0;
 
-    for (let j = 1; j < A.length; j++) {
+    for (let j = 1; j < A.length - 1; j++) {
       // console.log(D[i].split("-"));
       let month = parseInt(D[i].split("-")[1]); // month without 0's eg 04->4
       // console.log("month: ", month);
@@ -1009,9 +1015,9 @@ function solution(A, D) {
   return sum;
 }
 
-let A = [1, -1, 0, -105, 1];
-let D = ["2020-12-31", "2020-04-04", "2020-04-04", "2020-04-14", "2020-07-12"];
-solution(A, D);
+// let A = [1, -1, 0, -105, 1];
+// let D = ["2020-12-31", "2020-04-04", "2020-04-04", "2020-04-14", "2020-07-12"];
+// solution(A, D);
 
   // let sentence = S.replace(/\./gi, "**").replace(/\!/gi, "**").replace(/\?/g, "**");
 
