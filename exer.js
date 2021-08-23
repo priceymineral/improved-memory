@@ -1167,3 +1167,36 @@ function sameFrequency(num1, num2) {
 }
 
 // sameFrequency(1882, 2811);
+
+// Determine whether a variable number of inputs contain duplicates
+function areThereDuplicates() {
+  let mySet = new Set(arguments);
+  console.log(mySet.size);
+  return mySet.size !== arguments.length;
+
+  // can use frequency counter
+  // but will use multiple pointers
+  // what if I have obj's as inputs, or arr's?
+
+  // let args = [...arguments];
+  // args.sort(function (a, b) {return a > b});
+  // console.log(args);
+
+  // let i = 0;
+
+  // for (let j = 1; j < args.length; j++) {
+  //   if (args[j] === args[i]) {
+  //     return true;
+  //   } else {
+  //     i++;
+  //   }
+  // }
+
+  // return false;
+
+
+}
+
+// areThereDuplicates(3, 2, 1, 4);
+// areThereDuplicates(10, 2, 1);
+// areThereDuplicates('a', 'b', 'c', 'c', 'b');
