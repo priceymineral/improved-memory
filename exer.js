@@ -1220,3 +1220,25 @@ function averagePair(arr, num) {
   return false;
 }
 averagePair([1, 3, 3, 5, 6, 7, 10, 12, 19], 8);
+
+
+function isSubsequence(str1, str2) {
+  if (!'') console.log('empty string = false');
+
+  if (!str1 || str1.length > str2.length) return false;
+
+  let i = 0;
+
+  for (let j = 0; j < str2.length; j++) {
+    if (str1[i] === str2[j]) {
+      i++;
+      if (i === str1.length) {
+        return true;
+      };
+    };
+  };
+
+  return false;
+}
+
+isSubsequence('abc', 'abracadabra');
