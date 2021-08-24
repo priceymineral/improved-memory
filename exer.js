@@ -1242,3 +1242,50 @@ function isSubsequence(str1, str2) {
 }
 
 isSubsequence('abc', 'abracadabra');
+
+
+function maxSubArraySum(arr, num) {
+  // input - array (of numbers) and an integer
+  // output - integer (greatest sum of length num)
+  // edge - num > arr.length
+  //        num < 1
+  //        arr.length < 1 (0)
+  //        => return null if answer does not exist
+  // constraints - subarray MUST consist of consecutive numbers in arr
+  // HL - Sliding window of length num. O(n) time/O(1) space
+
+  if (num > arr.length) return null;
+  if (!num) return null;
+  if (!arr.length) return null;
+
+  // initialize a maxSum to store the initial sum
+  let maxSum = 0;
+
+  // iterate from 0 to num
+  for (let x of arr.slice(0, num)) {
+    maxSum += x;
+  }
+
+  // initialize a tempSum = to maxSum
+  let tempSum = maxSum;
+
+  // iterate from 0 to (length - num)
+  for (let i = 0; i < arr.length - num; i++) {
+    // subtract the current number in the iteration from tempSum
+    tempSum -= arr[i];
+    // add number at current idx + num to tempSum
+    tempSum += arr[i + num];
+    console.log(tempSum);
+    // compare to max and temp sums
+    // if temp > max
+    if (tempSum > maxSum) {
+      // reassign max to temp
+      maxSum = tempSum;
+    }
+  }
+
+  // return maxSum
+  return maxSum;
+}
+
+maxSubArraySum([1, 4, 2, 10, 23, 3, 1, 0, 20], 4); // 39
