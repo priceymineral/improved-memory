@@ -1289,3 +1289,45 @@ function maxSubArraySum(arr, num) {
 }
 
 maxSubArraySum([1, 4, 2, 10, 23, 3, 1, 0, 20], 4); // 39
+
+function minSubArrayLen(arr, num) {
+  // n = length of min array
+  // let n = minSubArr.length;
+  let sum = 0;
+  let end = 0;
+
+  for (let x of arr) {
+    sum += x;
+    // minSubArr.push(x);
+    end++;
+    if (sum >= num) break;
+  }
+  // if all added together don't meet the criteria, return 0
+  // if (minSubArr.length === arr.length) return 0;
+  console.log('original sum:', sum);
+
+  // initiate temp sum = to sum or reuse sum?
+  let start = 0;
+  let minLen = end - start;
+
+  // iterate up to arr len
+  for (let i = 0; i < arr.length; i++) {
+    if (sum >= num && start < arr.length) {
+      minLen = Math.min(minLen, end - start);
+      sum -= arr[start];
+      start++;
+    } else if (sum < num && end < arr.length && start < arr.length) {
+      sum += arr[end];
+      end++;
+    }
+  }
+
+  // Will the loop see the new reassigned n?
+  // return the length of min array
+  console.log('minLen:', minLen);
+  // return minLen;
+}
+
+// minSubArrayLen([2,3,1,2,4,3], 7) // 2
+minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 55) // 5
+  // minSubArrayLen([1,4,16,22,5,7,8,9,10], 39) // 3
