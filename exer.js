@@ -155,7 +155,7 @@ const coinCollectWithMap = (matrix) => {
 let coins = [[1, 3, 1, 1],  // 0 + max(2, 3)
 [2, 0, 0, 4]]; // (1, 0) =>
 
-console.log(coinCollectWithMap(coins));
+// console.log(coinCollectWithMap(coins));
 
 // // # PROBLEM 4
 // Given a binary tree root, return an inorder traversal of root as a list.
@@ -1357,5 +1357,36 @@ function minSubArrayLen(nums, sum) {
   return minLen === Infinity ? 0 : minLen;
 }
 // minSubArrayLen([2,3,1,2,4,3], 7) // 2
-minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 55) // 5
+// minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 55) // 5
   // minSubArrayLen([1,4,16,22,5,7,8,9,10], 39) // 3
+
+let naiveStringSearch = (longString, shortString) => {
+  let result = 0;
+  let lettersMatching = 0;
+  let k = 0;
+
+  while (k < longString.length) {
+    if (longString[k] === shortString[0]) {
+      lettersMatching = 1;
+      for (let i = 1; i < shortString.length; i++) {
+        if (longString[k+i] === shortString[i]) lettersMatching++;
+        else break;
+      }
+
+      if (lettersMatching === shortString.length) {
+        result++;
+        lettersMatching = 0;
+        k = k + shortString.length - 1;
+      }
+    }
+
+    k++;
+  }
+
+  return result;
+}
+
+
+
+
+// naiveStringSearch('hellotobias im , yes, yes yetobias tobias ', ' ')
