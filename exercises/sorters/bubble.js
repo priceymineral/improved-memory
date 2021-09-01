@@ -1,3 +1,4 @@
+//O(n^2) time/O(1) space
 function bubbleSort(arr, n = 1) {
   // input is an array
   // output is sorted input array

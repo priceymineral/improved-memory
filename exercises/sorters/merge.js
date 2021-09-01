@@ -1,4 +1,4 @@
-
+// O(nlog(n)) time/O(n) space
 // HELPER FUNCTION FOR MERGESORT
 function merger(arr_i, arr_j) {
   // input is 2 sorted arrays
@@ -57,4 +57,38 @@ function merger(arr_i, arr_j) {
 
 }
 
-merger([1,3,4,5,6], [1,3,3,5,7]);
+// merger([1,3,4,5,6], [1,3,3,5,7]);
+let divider = (inputArray, outputArray) => {
+  if (inputArray.length === 1) {
+    outputArray.push(inputArray);
+    return;
+  }
+
+  let halfwayIdx = Math.floor(inputArray.length/2);
+  let firstHalf = inputArray.slice(0, halfwayIdx);
+  let secondHalf = inputArray.slice(halfwayIdx)
+
+  divider(firstHalf, outputArray);
+  divider(secondHalf, outputArray);
+
+  return outputArray;
+}
+
+let mergeSort = (array) => {
+  if (array.length <= 1) {
+    return array;
+  } else {
+    let divided = divider(array, []);
+    let merged = merger(divided[0], divided[1]) || arr[0];
+  }
+
+  for (let i = 2; i < divided.length; i++) {
+    merged = merger(merged, divided[i]);
+  }
+
+  return merged;
+}
+
+// mergeSort([545,749,451,45,650,234,46,21,134,323,11,104]);
+// mergeSort([5,7,4,5,6]);
+// mergeSort([]);

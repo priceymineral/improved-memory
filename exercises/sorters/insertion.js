@@ -1,3 +1,4 @@
+//O(n^2) time/O(1) space
 function insertionSort(arr) {
   // input is an array of numbers
   // output is the input array sorted
