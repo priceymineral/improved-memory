@@ -16,7 +16,6 @@ class LinkedList {
     // remove the tail
     // return the tail
     // reassign the tail to the new last node
-
     if (!this.size) return undefined;
     // initialize a last node var
     let currentNode = this.head; // {val:1, next:Node}
@@ -27,9 +26,7 @@ class LinkedList {
 
       return currentNode;
     }
-
     let nextNode = currentNode.next; // {val:3, next:null}
-
     // traverse the list
     while (currentNode) {
       // console.log('in while loop');
@@ -47,19 +44,14 @@ class LinkedList {
       // console.log('list:', this);
       // console.log('pop:', nextNode.val);
       return nextNode;
-
       }
-
       currentNode = nextNode;
       nextNode = currentNode.next;
-
     }
-
   }
 
   push (val) {
     let node = new Node(val);
-
     // if there is no head
     if (!this.head) {
       // assign a node with value val as the head and tail
@@ -76,6 +68,30 @@ class LinkedList {
     this.size++;
     // return the list
     return this;
+  }
+
+
+  shift() {
+    // if list has no head, return undefined
+    if (!this.size) return undefined;
+    // if list size is 1, make head and tail null, decrement size to 0
+    if (this.size === 1) {
+      let shifted = this.head;
+      this.head = null;
+      this.tail = null;
+      this.size--;
+
+      return shifted;
+    }
+    // removes the head
+    let shifted = this.head;
+    // reassign head to the second node
+    this.head = this.head.next
+    // decrement size
+    this.size--;
+
+    // returns removed head
+    return shifted;
   }
 }
 
