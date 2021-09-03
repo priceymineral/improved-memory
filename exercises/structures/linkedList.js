@@ -93,6 +93,27 @@ class LinkedList {
     // returns removed head
     return shifted;
   }
+
+
+  unshift(val) {
+    // add a new head
+    // create a new node with value "val", next will be the old head
+    let newHead = new Node(val);
+    // if there is no head
+    if (!this.size) {
+      // make head and tail the new node
+      this.head = newHead;
+      this.tail = this.head;
+    } else {
+      newHead.next = this.head;
+      // reassign the head
+      this.head = newHead;
+    }
+    // increment the size
+    this.size++;
+
+    return this;
+  }
 }
 
 let myList = new LinkedList();
