@@ -116,12 +116,36 @@ class LinkedList {
   }
 
   get(idx) {
-    if (this.size <= idx) return 'undefined';
+    if (this.size <= idx || idx < 0) return 'undefined';
     let node = this.head;
     for (let i = 0; i < idx; i++) {
       node = node.next;
     }
     return node;
+  }
+
+  insert(idx, val) {
+    // if index is 0, unshift, return true
+    if (!idx) !!this.unshift(val);
+    // if index = size, push, return true
+    if (this.size === idx) !!this.push(val);
+    // if index > size or less than 0, return false
+    if (idx < 0 || idx > this.size) return false;
+
+
+    let newNode = new Node(val);
+    // get the node at index - 1
+    let prevNode = this.get(idx - 1);
+    let nextNode = prevNode.next;
+    // connect it to new node
+    prevNode.next = newNode;
+    //connect the new node to the node at index
+    newNode.next = nextNode;
+    // increment size
+    this.size++;
+    // return true
+    return true;
+
   }
 }
 
