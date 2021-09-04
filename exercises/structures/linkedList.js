@@ -114,6 +114,15 @@ class LinkedList {
 
     return this;
   }
+
+  get(idx) {
+    if (this.size <= idx) return 'undefined';
+    let node = this.head;
+    for (let i = 0; i < idx; i++) {
+      node = node.next;
+    }
+    return node;
+  }
 }
 
 let myList = new LinkedList();
