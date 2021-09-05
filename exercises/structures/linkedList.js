@@ -147,6 +147,28 @@ class LinkedList {
     return true;
 
   }
+
+  remove(idx) {
+    // if idx is < 0 or >= size, return undefined
+    if (idx < 0 || idx >= this.size) return undefined;
+    // if idx is 0, shift
+    if (!idx) return this.shift();
+    // if idx is size -1, pop
+    if (idx === this.size - 1) return this.pop();
+
+    // save removed
+    let removed = this.get(idx);
+    // get the node at idx - 1
+    let prevNode = this.get(idx - 1);
+    // console.log(prevNode);
+    // set it's next to the next's next
+    prevNode.next = removed.next;
+    // decrement size
+    this.size--;
+
+    // return removed node
+    return removed;
+  }
 }
 
 let myList = new LinkedList();
