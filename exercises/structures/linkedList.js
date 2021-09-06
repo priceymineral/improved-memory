@@ -169,6 +169,31 @@ class LinkedList {
     // return removed node
     return removed;
   }
+
+
+  reverse() {
+    let currentNode = this.head;
+    this.head = this.tail;
+    this.tail = currentNode;
+    let prevNode = null;
+    let nextNode = null;
+
+    // loop through list
+    for (let i = 0; i < this.size; i++) {
+      // step 1 - save currentNode's next to make it next iteration's currentNode
+      let nextNode = currentNode.next;
+      // step 2 -connect currentNode's next to previous
+      currentNode.next = prevNode;
+      // step 3 -reassign previous to currentNode
+      prevNode = currentNode;
+      // step 4 -reassign currentNode to var saved in step 1
+      currentNode = nextNode;
+    }
+
+    console.log(this);
+    console.log(this.head.next);
+    // return this;
+  }
 }
 
 let myList = new LinkedList();
