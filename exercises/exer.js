@@ -44,8 +44,7 @@ function reverser(str) {
 // add the LARGER number at that cell to count
 // from the new cell, compare right to the bottom
 // add the LARGER number at the cell to count
-// ...
-
+// .
 function coinCollect(matrix) {
 
   var max = matrix[0].length

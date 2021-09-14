@@ -78,6 +78,45 @@ class DLL {
     return oldTail;
   }
 
+  shift () {
+    // remove node form the beginning
+    // input - none
+    // output - node removed
+    // edge cases - empty myList
+    //            - 1 item long list, reassign head and tail
+    // constraints - none stated
+    // hl - disconnect head, reassign head, return old head
+
+    // if list is empty, return undefined
+    if (!this.size) return undefined;
+
+    // if list is 1 node long,
+    if (this.size === 1) {
+      // save the disconnected head
+      var shifted = this.head;
+      // reassign head
+      this.head = null;
+      this.tail = null;
+
+    } else {
+    // if list is 2+ nodes long,
+    // reassign head to current head's next
+    this.head = this.head.next;
+    // save the disconnected head from the new head's previous
+    var shifted = this.head.prev;
+    // disconnect old head
+    shifted.next = null;
+    // disconnect prev from new head
+    this.head.prev = null;
+    }
+
+    // decrement size
+    this.size--;
+    // return disconnected head
+    return shifted;
+
+  }
+
 }
 
 let myList = new DLL();
