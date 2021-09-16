@@ -117,6 +117,42 @@ class DLL {
 
   }
 
+    // add a node to the front of the list, i.e., add a new head
+    unshift(val) {
+      // input - integer (value)
+      // output - the list, the size
+      // edge cases - list is empty (assign new node to head and tail)
+      //            -
+      // constraints - not sure
+      // high level - create a new  node and add it to the front of the head, assign it as head, increment size of list
+
+      // create a new node with val
+      let node = new Node(val);
+
+      // if list is empty
+      if (!this.size) {
+        // assign new node as head
+        this.head = node;
+        // assign new node as tail
+        this.tail = node;
+      // otherwise
+      } else {
+      // make new node's next = head
+      node.next = this.head;
+      // make head's previous the new node
+      this.head.prev = node;
+      // make head equal to new node
+      this.head = node;
+      }
+
+
+
+      // increment size
+      this.size++;
+      // return list
+      return this.head;
+    }
+
 }
 
 let myList = new DLL();
