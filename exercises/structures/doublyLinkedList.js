@@ -153,6 +153,36 @@ class DLL {
       return this.head;
     }
 
+    get(idx) {
+      // retrieve the node at that index
+      // input - integer (idx)
+      // output - node
+      // edge - index is > size, return undefined, or -1
+      // high level - figure out whether idx is closer to the head or the tail, starting from there, //              loop to get the node at idx
+
+      if (idx >= this.size) return undefined;
+
+      let midpoint = this.size/2;
+
+      let looper = (start, end, dir) => {
+        let iter = 0;
+        while (iter < end) {
+          if (dir === 'next') start = start.next;
+          if (dir === 'prev') start = start.prev;
+          iter++;
+        }
+        return start;
+      }
+
+      if (idx <= midpoint) {
+        return looper(this.head, idx, 'next');
+      } else {
+        let howmany = this.size - idx - 1;
+        return looper(this.tail, howmany, 'prev');
+      }
+
+    }
+
 }
 
 let myList = new DLL();
