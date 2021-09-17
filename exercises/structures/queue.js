@@ -12,8 +12,8 @@ class Queue {
     this.size = 0;
   }
 
-  // push to the back of the queue
-  push(val) {
+  // enqueue to the back of the queue
+  enqueue(val) {
     // input => integer (value)
     // output => queue
     // edge => if queue is empty, reassign both first and last and increment size
@@ -50,7 +50,7 @@ class Queue {
   }
 
   // pop from the front of the queue
-  pop() {
+  dequeue() {
     // input - none
     // output - popped node
     // edge - queue is empty, return null
@@ -87,12 +87,12 @@ class Queue {
 }
 
 // let q = new Queue();
-// console.log('pushed 1', q.push(1));
-// console.log('pushed 2', q.push(2));
-// console.log('pushed 3', q.push(3));
-// console.log('popped', q.pop());
+// console.log('enqueueed 1', q.enqueue(1));
+// console.log('enqueueed 2', q.enqueue(2));
+// console.log('enqueueed 3', q.enqueue(3));
+// console.log('dequeueped', q.dequeue());
 // console.log(q);
-// console.log('popped', q.pop());
+// console.log('dequeueped', q.dequeue());
 // console.log(q);
-// console.log('popped', q.pop());
+// console.log('dequeueped', q.dequeue());
 // console.log(q);
