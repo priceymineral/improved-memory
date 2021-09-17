@@ -72,7 +72,7 @@ class Stack {
     // decrement size
     this.size--;
     // return original first node
-    return popped;
+    return popped.val;
 
   }
 }
@@ -85,6 +85,6 @@ myStack.push(3);
 console.log(myStack.pop());
 // console.log('what is happening here')
 // myStack.pop();
-console.log(myStack);
+// console.log(myStack);
 
 
