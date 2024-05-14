@@ -1,5 +1,5 @@
 class Node {
-  constructor (val) {
+  constructor(val) {
     this.val = val;
     this.left = null;
     this.right = null;
@@ -7,11 +7,11 @@ class Node {
 }
 
 class BST {
-  constructor () {
+  constructor() {
     this.root = null;
   }
 
-  insert (val) {
+  insert(val) {
     // insert a nodde where it corresponds
     // input - integer
     // output - tree (root)
@@ -42,7 +42,7 @@ class BST {
             currentNode.right = node;
             // break
             break;
-          // if there is repeat traversal
+            // if there is repeat traversal
           } else {
             // reassign current node to that node
             currentNode = currentNode.right;
@@ -50,7 +50,7 @@ class BST {
         } else {
           if (!currentNode.left) {
             currentNode.left = node;
-            break
+            break;
           } else {
             currentNode = currentNode.left;
           }
@@ -58,12 +58,11 @@ class BST {
       }
     }
 
-
     return this.root;
     // console.log(this.root);
   }
 
-  find (val) {
+  find(val) {
     // input => integer
     // output => boolean
     // edge => tree is empty, return false
@@ -81,7 +80,7 @@ class BST {
         return true;
       }
       // if value is greater
-      if  (val > current.val) {
+      if (val > current.val) {
         // if there is a right
         if (current.right) {
           // current value is right's value
@@ -98,7 +97,7 @@ class BST {
         if (current.left) {
           // current value is left's value
           current = current.left;
-        // else
+          // else
         } else {
           // return false
           return false;
@@ -106,14 +105,79 @@ class BST {
       }
     }
   }
+
+  bfs() {
+    let data = [];
+    queue = [this.root];
+
+    while (queue.length) {
+      node = queue.shift();
+      data.push(node.value);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+
+    return data;
+  }
+
+  dfsPreOrder() {
+    // [10, 6, 3,8, 15, 20]
+    let data = [];
+
+    function traverse(node) {
+      data.push(node.val);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    }
+
+    traverse(this.root);
+    return data;
+  }
+
+  dfsPostOrder() {
+    // [ 3, 8, 6, 20, 15, 10 ]
+    let data = [];
+
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      // node.left && traverse(node.left);
+      if (node.right) traverse(node.right);
+      // node.right && traverse(node.right);
+      data.push(node.val);
+    }
+
+    traverse(this.root);
+    return data;
+  }
+
+  dfsInOrder() {
+    let data = [];
+
+    function traverse(node) {
+      node.left && traverse(node.left);
+      data.push(node.val);
+      node.right && traverse(node.right);
+    }
+
+    traverse(this.root);
+    return data;
+  }
 }
 
-let myTree = new BST();
-// console.log(myTree);
-myTree.insert(10);
-myTree.insert(20);
-myTree.insert(5);
-myTree.insert(8);
-myTree.insert(15);
-myTree.insert(30);
-console.log(myTree.find(40));
+let tree = new BST();
+tree.insert(10);
+tree.insert(6);
+tree.insert(15);
+tree.insert(8);
+tree.insert(20);
+tree.insert(3);
+console.log(tree);
+console.log(tree.dfsPreOrder()); // [10, 6, 3, 8, 15, 20]
+console.log(tree.dfsPostOrder()); // [ 3, 8, 6, 20, 15, 10]
+console.log(tree.dfsInOrder()); // [3, 6, 8, 10, 15, 20]
+
+//        10
+//       /  \
+//     6      15
+//   /   \       \
+//  3     8       20

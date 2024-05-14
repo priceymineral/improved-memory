@@ -10,20 +10,19 @@
 
 function reverser(str) {
   // split at the spaces
-  let strToArr = str.split(" ")
-  var revArr = []
+  let strToArr = str.split(" ");
+  var revArr = [];
   // console.log(strToArr)
   for (var i = strToArr.length - 1; i >= 0; i--) {
-    revArr.push(strToArr[i])
+    revArr.push(strToArr[i]);
   }
-  return revArr.join(" ")
+  return revArr.join(" ");
 }
 // split() the input string
 // iterate backwards
 // place the strings in a new array
 // join the string
 // return it
-
 
 // PROBLEM #3
 // You are given a 2-dimensional integer matrix where each cell represents the number of coins in that cell
@@ -46,40 +45,35 @@ function reverser(str) {
 // add the LARGER number at the cell to count
 // .
 function coinCollect(matrix) {
-
-  var max = matrix[0].length
-  var m = 0
-  var n = 0
-  var count = matrix[m][n]
+  var max = matrix[0].length;
+  var m = 0;
+  var n = 0;
+  var count = matrix[m][n];
 
   function counter(matrix, m, n) {
-    console.log(`m=${m}, n=${n}`)
+    console.log(`m=${m}, n=${n}`);
 
     if (matrix[m][n + 1] >= matrix[m + 1][n]) {
-
-      count += matrix[m][n + 1]
+      count += matrix[m][n + 1];
       if (n + 1 >= max) {
-        return count
+        return count;
       } else {
-        n += 1
-        return count + counter(matrix, m, n)
+        n += 1;
+        return count + counter(matrix, m, n);
       }
-
     } else {
-
-      count += matrix[m + 1][n]
+      count += matrix[m + 1][n];
       // if m+=1 >= max return count else
       if (m + 1 >= max) {
-        return count
+        return count;
       } else {
-        m += 1
-        return count + counter(matrix, m, n)
+        m += 1;
+        return count + counter(matrix, m, n);
       }
-
     }
   }
 
-  return count
+  return count;
 }
 
 // matrix = [[0, 3, 1, 1], [2, 0, 0, 4]]
@@ -92,30 +86,32 @@ const coinCollectWithMap = (matrix) => {
   let memo = new Map();
 
   let help = (i, j) => {
-    let key = i + ',' + j;
+    let key = i + "," + j;
     // '0-0'
     // '1-0'
     if (memo.has(key)) {
       console.log(i, j, memo.get(key));
       return memo.get(key);
-    };
+    }
     // '0-0' not in memo
     // '1-0' not in memo
     if (i === rows - 1 && j === columns - 1) return matrix[i][j];
     // if you're at the end, return number of coins at the end
     if (i >= rows || j >= columns) return 0;
     // out of bounds return 0
-    memo.set(key, matrix[i][j] + Math.max(help(i + 1, j), help(i, j + 1)))
+    memo.set(key, matrix[i][j] + Math.max(help(i + 1, j), help(i, j + 1)));
     // set '0-0' to ==> 0 + max( matrix[1][0], matrix[0][1] )
     // set '1-0' t0 ==> 2 + max( matrix[2][0], matrix[1][1] )
 
     // console.log(memo);
     return memo.get(key);
-  }
+  };
   return help(0, 0);
-}
-let coins = [[1, 3, 1, 1],  // 0 + max(2, 3)
-[2, 0, 0, 4]]; // (1, 0) =>
+};
+let coins = [
+  [1, 3, 1, 1], // 0 + max(2, 3)
+  [2, 0, 0, 4],
+]; // (1, 0) =>
 
 // console.log(coinCollectWithMap(coins));
 
@@ -169,7 +165,7 @@ let coins = [[1, 3, 1, 1],  // 0 + max(2, 3)
 let matrix = [
   [1, 2, 3],
   [4, 5, 6],
-  [7, 8, 9]
+  [7, 8, 9],
 ];
 
 const rotator = (grid) => {
@@ -180,14 +176,14 @@ const rotator = (grid) => {
   // iterate over rows
   for (let i = 0; i < grid.length; i++) {
     newLength -= 1;
-    var row = []
+    var row = [];
     for (let j = 0; j < grid[i].length; j++) {
       // console.log('new length: ', newLength);
       row.push(grid[j][newLength]);
       // console.log(`(${i}, ${j}) => (${j}, ${newLength})`);
-    };
+    }
     rotated.push(row);
-  };
+  }
 
   return rotated;
 };
@@ -195,8 +191,8 @@ const rotator = (grid) => {
 let rotated = [
   [3, 6, 9],
   [2, 5, 8],
-  [1, 4, 7]
-]
+  [1, 4, 7],
+];
 
 // if (JSON.stringify(rotated) === JSON.stringify(rotator(matrix))) {
 //   console.log('You got it, dude!')
@@ -280,17 +276,16 @@ const solve = (s1, s2) => {
   let helper = (str1, str2) => {
     if (str2.includes(str1[0])) {
       str1 = str1.slice(1);
-      str2 = str2.slice(s2.indexOf(str1[0]) + 1)
+      str2 = str2.slice(s2.indexOf(str1[0]) + 1);
       helper(str1, str2);
     } else {
       return false;
     }
-  }
+  };
   helper(s1, s2);
 
   return true;
-}
-
+};
 
 // class Solution {
 //     solve(s1, s2) {
@@ -320,13 +315,12 @@ function twoNumberSum(array, targetSum) {
     if (sum === targetSum) {
       // console.log([array[leftPointer], array[rightIdx]]);
       return [array[leftPointer], array[rightPointer]];
-
     } else if (sum > targetSum) {
       // console.log('more');
       rightPointer -= 1;
     } else {
       // console.log('less');
-      leftPointer += 1
+      leftPointer += 1;
     }
   }
 }
@@ -391,10 +385,10 @@ function threeNumberSum(array, targetSum) {
         // put in an array and push to result array
         if (firstNum + secondNum + thirdNum === targetSum) {
           triplets.push([firstNum, secondNum, thirdNum]);
-        };
-      };
-    };
-  };
+        }
+      }
+    }
+  }
 
   // return result array
   return triplets;
@@ -421,16 +415,6 @@ function threeNumberSum(array, targetSum) {
 // const singles = groceries.filter(amount => amount.quantity < 2)
 
 // console.log(singles);
-
-
-
-
-
-
-
-
-
-
 
 // function getTotalPrice(groceries) {
 // // input is an array of objects
@@ -477,15 +461,11 @@ function threeNumberSum(array, targetSum) {
 // convert to string
 // return splice from
 
-
-
-
 // you can write to stdout for debugging purposes, e.g.
 // console.log('this is a debug message');
 // A is the array with the peoples names
 // B is the array with the numbers
 // P is a string of length M representing a partial phone #
-
 
 // S - string representing a phone #
 // N - number of characters in S
@@ -540,7 +520,6 @@ function threeNumberSum(array, targetSum) {
 //             // final tag number
 //             result.push(temp[N-4],temp[N-3],"-",temp[N-2], temp[N-1]);
 
-
 //         break;
 //         case 2:
 //             for(let i=0;i<N-2;i++)
@@ -574,19 +553,31 @@ const answer = (Y, A, B, W) => {
   // output - integer of the number of weeks
   // write your code in JavaScript (Node.js 8.9.4)
   let days = {
-    "Monday": 0,
-    "Tuesday": 1,
-    "Wednesday": 2,
-    "Thursday": 3,
-    "Friday": 4,
-    "Saturday": 5,
-    "Sunday": 6
+    Monday: 0,
+    Tuesday: 1,
+    Wednesday: 2,
+    Thursday: 3,
+    Friday: 4,
+    Saturday: 5,
+    Sunday: 6,
   };
 
-  let n_month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  let n_month = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   let l_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
 
   if (Y % 4 == 0)
     // if leap year, change 28 => 29
@@ -599,18 +590,18 @@ const answer = (Y, A, B, W) => {
     // calc = number of days up to April
     calc += l_month[i];
   }
-  console.log('days: ', calc);
+  console.log("days: ", calc);
 
   // consider Jan 1st day, calculate day of starting month
   // 1 ?WHy is wednesday 2, not 3? One day hasn't elapsed until Tuesday
   // if the first is Monday, then you add 0 days... Wednesday you add 2 days
   // if it's been 6 days, then it's Sunday, 7 is Monday again
   calc = (calc + days[W]) % 7;
-  console.log('new days: ', calc); // 1, Tuesday
+  console.log("new days: ", calc); // 1, Tuesday
 
   // find the 1st Monday for flight
   // ?Why does this work? Add 1 because days start with 1
-  let f_m = (7 - calc) + 1;
+  let f_m = 7 - calc + 1;
 
   calc = 0;
   // iterate from 0 - 4
@@ -620,8 +611,8 @@ const answer = (Y, A, B, W) => {
   }
 
   // consider Jan 1th day, calculate day of starting month
-  calc = (calc + days[W]) % 7 - 1; // ?WHY is it -1?
-  console.log('calc again: ', calc);
+  calc = ((calc + days[W]) % 7) - 1; // ?WHY is it -1?
+  console.log("calc again: ", calc);
 
   // find the last Sunday for flight
   //        #days[4] - calc+1
@@ -633,8 +624,8 @@ const answer = (Y, A, B, W) => {
   }
 
   sum = sum - (f_m - 1) - (l_month[n_month.indexOf(B)] - l_s);
-  return (sum / 7);
-}
+  return sum / 7;
+};
 
 // answer(Y, A, B, W);
 // // It's been 5 days since wednesday (2) => Monday (0)
@@ -688,9 +679,9 @@ function solution(A, B, P) {
   for (let i = 0; i < B.length; i++) {
     if (B[i].indexOf(P) > -1) {
       let contact = {
-        "name": A[i],
-        "number": B[i]
-      }
+        name: A[i],
+        number: B[i],
+      };
 
       list.push(contact);
     }
@@ -736,19 +727,19 @@ function formatter(S) {
 
   switch (S.length % 3) {
     case 0:
-      console.log('0');
+      console.log("0");
       for (let i = 0; i < S.length; i++) {
         count++;
-        newS.push(S[i])
+        newS.push(S[i]);
         if (count === 3 && i < S.length - 1) {
           newS.push("-");
           count = 0;
-        };
-      };
+        }
+      }
       break;
 
     case 1:
-      console.log('1');
+      console.log("1");
       for (let i = 0; i < S.length - 4; i++) {
         count++;
         newS.push(S[i]);
@@ -757,12 +748,18 @@ function formatter(S) {
           count = 0;
         }
       }
-      newS.push(S[S.length - 4], S[S.length - 3], "-", S[S.length - 2], S[S.length - 1]);
+      newS.push(
+        S[S.length - 4],
+        S[S.length - 3],
+        "-",
+        S[S.length - 2],
+        S[S.length - 1]
+      );
       break;
 
     // 2 : last set is 2
     case 2:
-      console.log('2');
+      console.log("2");
       // iterate over S from 0 to length - 3
       for (let i = 0; i < S.length - 2; i++) {
         count++;
@@ -778,14 +775,12 @@ function formatter(S) {
       break;
 
     default:
-      console.log('Somn went wrong');
-
+      console.log("Somn went wrong");
   }
 
   console.log(newS);
   // return new S
   return newS.join("");
-
 }
 
 // let S = "00-44 48 5555 8361"
@@ -803,32 +798,31 @@ function formatter(S) {
 function vacation(Y, A, B, W) {
   // initialize an object with the months and the number of days
   let months = {
-    "January": 31,
-    "February": 28,
-    "March": 31,
-    "April": 30,
-    "May": 31,
-    "June": 30,
-    "July": 31,
-    "August": 31,
-    "September": 30,
-    "October": 31,
-    "November": 30,
-    "December": 31
+    January: 31,
+    February: 28,
+    March: 31,
+    April: 30,
+    May: 31,
+    June: 30,
+    July: 31,
+    August: 31,
+    September: 30,
+    October: 31,
+    November: 30,
+    December: 31,
   };
 
   let days = {
-    "Monday": 0,
-    "Tuesday": 1,
-    "Wednesday": 2,
-    "Thursday": 3,
-    "Friday": 4,
-    "Saturday": 5,
-    "Sunday": 6
-  }
+    Monday: 0,
+    Tuesday: 1,
+    Wednesday: 2,
+    Thursday: 3,
+    Friday: 4,
+    Saturday: 5,
+    Sunday: 6,
+  };
 
   // let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-
 
   // Find the first monday when Jon can fly out
   // find the day of the first of this month
@@ -851,7 +845,7 @@ function vacation(Y, A, B, W) {
   let totalDays = daysToA + days[W];
   let dayValue = totalDays % 7;
   console.log(totalDays % 7);
-  let dayOfTheWeek = Object.keys(days).find(key => days[key] === dayValue);;
+  let dayOfTheWeek = Object.keys(days).find((key) => days[key] === dayValue);
   // console.log(dayOfTheWeek);
   // Tuesday April 1st
   // Determine what day of the week is Apr 1
@@ -859,8 +853,8 @@ function vacation(Y, A, B, W) {
   // how to determine the difference between the day and MONDAY
   let daysToSubtract = 6 - dayValue;
   // console.log(daysToSubtract);
-  let daysToVacation = totalDays + daysToSubtract
-  console.log('days to vacation: ', daysToVacation);
+  let daysToVacation = totalDays + daysToSubtract;
+  console.log("days to vacation: ", daysToVacation);
 
   // Find the last Sunday Jon can fly back
   let daysToB = 0;
@@ -871,25 +865,23 @@ function vacation(Y, A, B, W) {
     }
   }
   // find the number of days to end of month
-  console.log('days to B: ', daysToB);
+  console.log("days to B: ", daysToB);
   // determine which day of the week it is
   let lastDayOfBValue = daysToB % 7;
-  console.log('lastDayOfBValue: ', lastDayOfBValue);
+  console.log("lastDayOfBValue: ", lastDayOfBValue);
   let lastDayOfVacay = daysToB - lastDayOfBValue;
-  console.log('lastDay of vacay: ', lastDayOfVacay);
+  console.log("lastDay of vacay: ", lastDayOfVacay);
   // console.log('last day of B: ', lastDayOfB);
   // find the first sunday before it
 
   // divide the number of days by 7 and return
   let totalDaysOfVacay = lastDayOfVacay - daysToVacation;
-  console.log('total days of vacay: ', totalDaysOfVacay);
+  console.log("total days of vacay: ", totalDaysOfVacay);
   // find the number of days between the sunday he flies back and the monday he flies out
   // divide by 7
   let totalWeeks = totalDaysOfVacay / 7;
 
   return Math.floor(totalWeeks);
-
-
 }
 
 // let Y = 2014; // Year of the vacation
@@ -913,12 +905,11 @@ function vacation(Y, A, B, W) {
 // going through all the vertices, one by one, in increasing order
 
 function path(N, A, B) {
-
   let myMap = new Map([A, B]);
-  console.log('my map: ', myMap);
+  console.log("my map: ", myMap);
 
   console.log(myMap.keys());
-  let connections = []
+  let connections = [];
   let M = A.length;
 
   for (let i = 0; i < M; i++) {
@@ -932,11 +923,14 @@ function path(N, A, B) {
   for (let j = 1; j < N; j++) {
     console.log(j);
     // make the pair with a dash as a string
-    if (connections.includes(j + "-" + (j + 1)) || connections.includes((j + 1) + "-" + j)) {
-      console.log('in continue: ');
+    if (
+      connections.includes(j + "-" + (j + 1)) ||
+      connections.includes(j + 1 + "-" + j)
+    ) {
+      console.log("in continue: ");
       continue;
     } else {
-      console.log('in false');
+      console.log("in false");
       return false;
     }
   }
@@ -953,7 +947,6 @@ function solution(A, D) {
   let sum = 0;
 
   for (let i = 1; i <= 12; i++) {
-
     let card_payment = 0;
     let card_transaction = 0;
 
@@ -964,15 +957,15 @@ function solution(A, D) {
       if (month == i) {
         sum += A[j];
         if (A[j] < 0) {
-          card_payment++
-          card_transaction += A[j]
+          card_payment++;
+          card_transaction += A[j];
         }
       }
     }
   }
 
   if (card < 3 || card > -100) {
-    sum -= 5
+    sum -= 5;
   }
   return sum;
 }
@@ -982,7 +975,6 @@ function solution(A, D) {
 // solution(A, D);
 
 // let sentence = S.replace(/\./gi, "**").replace(/\!/gi, "**").replace(/\?/g, "**");
-
 
 // function photos(S){
 
@@ -1027,11 +1019,9 @@ function solution(A, D) {
 //   return (n_arr.join("\n"));
 // }
 
-
 // // let S = "photo.jpg, Warsaw, 2013-09-05 14:08:15\njohn.png, London, 2015-06-20 15:13:22\n myFriends.png, Warsaw, 2013-09-05 14:07:13\nEiffel.jpg, Paris, 2015-07-23 08:03:02\npisatower.jpg, Paris, 2015-07-22 23:59:59\nBoB.jpg, London, 2015-08-05 00:02:03\nnotredam.png, Paris, 2015-09-01 12:00:01\nme.jpg, Warsaw, 2013-09-06 15:40:22\na.png, Warsaw, 2016-02-13 13:33:50\nb.jpg, Warsaw, 2016-01-02 15:12:22\nc.jpg, Warsaw, 2016-01-02 14:34:30\nd.jpg, Warsaw, 2016-01-02 15:15:01\ne.png, Warsaw, 2016-01-02 09:49:09\nf.png, Warsaw, 2016-01-02 10:55:32\ng.jpg, Warsaw, 2016-02-29 22:13:11";
 
 // // solution(S);
-
 
 // function solution(S)
 // {
@@ -1060,7 +1050,6 @@ function solution(A, D) {
 //     }
 //     // console.log("city arr: ", city_arr);
 //     // console.log("ext arr: ", extension_arr);
-
 
 //     let name_arr = [];
 
@@ -1098,10 +1087,7 @@ function solution(A, D) {
 //     // console.log(name_arr.join("\n"));
 // }
 
-
 // // solution("photo.jpg, Warsaw, 2013-09-05 14:08:15\njohn.png, London, 2015-06-20 15:13:22\n myFriends.png, Warsaw, 2013-09-05 14:07:13\nEiffel.jpg, Paris, 2015-07-23 08:03:02\npisatower.jpg, Paris, 2015-07-22 23:59:59\nBoB.jpg, London, 2015-08-05 00:02:03\nnotredam.png, Paris, 2015-09-01 12:00:01\nme.jpg, Warsaw, 2013-09-06 15:40:22\na.png, Warsaw, 2016-02-13 13:33:50\nb.jpg, Warsaw, 2016-01-02 15:12:22\nc.jpg, Warsaw, 2016-01-02 14:34:30\nd.jpg, Warsaw, 2016-01-02 15:15:01\ne.png, Warsaw, 2016-01-02 09:49:09\nf.png, Warsaw, 2016-01-02 10:55:32\ng.jpg, Warsaw, 2016-02-29 22:13:11");
-
-
 
 // // let arr = new Array(4);
 // // console.log('arr: ', arr);
@@ -1155,8 +1141,6 @@ function areThereDuplicates() {
   // }
 
   // return false;
-
-
 }
 
 // areThereDuplicates(3, 2, 1, 4);
@@ -1183,9 +1167,8 @@ function averagePair(arr, num) {
 }
 averagePair([1, 3, 3, 5, 6, 7, 10, 12, 19], 8);
 
-
 function isSubsequence(str1, str2) {
-  if (!'') console.log('empty string = false');
+  if (!"") console.log("empty string = false");
 
   if (!str1 || str1.length > str2.length) return false;
 
@@ -1196,15 +1179,14 @@ function isSubsequence(str1, str2) {
       i++;
       if (i === str1.length) {
         return true;
-      };
-    };
-  };
+      }
+    }
+  }
 
   return false;
 }
 
-isSubsequence('abc', 'abracadabra');
-
+isSubsequence("abc", "abracadabra");
 
 function maxSubArraySum(arr, num) {
   // input - array (of numbers) and an integer
@@ -1266,7 +1248,7 @@ function minSubArrayLen(arr, num) {
   }
   // if all added together don't meet the criteria, return 0
   // if (minSubArr.length === arr.length) return 0;
-  console.log('original sum:', sum);
+  console.log("original sum:", sum);
 
   // initiate temp sum = to sum or reuse sum?
   let start = 0;
@@ -1286,7 +1268,7 @@ function minSubArrayLen(arr, num) {
 
   // Will the loop see the new reassigned n?
   // return the length of min array
-  console.log('minLen:', minLen);
+  console.log("minLen:", minLen);
   // return minLen;
 }
 // WORKING SOLUTION
@@ -1320,8 +1302,9 @@ function minSubArrayLen(nums, sum) {
 }
 // minSubArrayLen([2,3,1,2,4,3], 7) // 2
 // minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 55) // 5
-  // minSubArrayLen([1,4,16,22,5,7,8,9,10], 39) // 3
+// minSubArrayLen([1,4,16,22,5,7,8,9,10], 39) // 3
 
+// returns the amount of times the shortstring is in the longstring
 let naiveStringSearch = (longString, shortString) => {
   let result = 0;
   let lettersMatching = 0;
@@ -1331,7 +1314,7 @@ let naiveStringSearch = (longString, shortString) => {
     if (longString[k] === shortString[0]) {
       lettersMatching = 1;
       for (let i = 1; i < shortString.length; i++) {
-        if (longString[k+i] === shortString[i]) lettersMatching++;
+        if (longString[k + i] === shortString[i]) lettersMatching++;
         else break;
       }
 
@@ -1346,7 +1329,29 @@ let naiveStringSearch = (longString, shortString) => {
   }
 
   return result;
+};
+
+console.log(
+  "naive:",
+  naiveStringSearch("hellotobias im , yes, yes yetobias tobias ", "tobias")
+);
+
+// factorial
+// non-recursive
+// function factorial(num) {
+//   let total = 1;
+//   for (let i = num; i > 1; i--) {
+//     total *= i;
+//   }
+
+//   return total;
+// }
+
+// recursive
+// let factorial = (num) => (num === 1 ? 1 : num * factorial(num - 1));
+function factorial(num) {
+  if (num === 1) return 1;
+  return num * factorial(num - 1);
 }
 
-// naiveStringSearch('hellotobias im , yes, yes yetobias tobias ', ' ')
-
+console.log("factorial: ", factorial(1));

@@ -1,18 +1,18 @@
 class Node {
-  constructor (val) {
+  constructor(val) {
     this.val = val;
     this.next = null;
   }
 }
 
 class LinkedList {
-  constructor () {
+  constructor() {
     this.size = 0;
     this.head = null;
     this.tail = null;
   }
 
-  pop () {
+  pop() {
     // remove the tail
     // return the tail
     // reassign the tail to the new last node
@@ -34,30 +34,30 @@ class LinkedList {
       // console.log(nextNode.next);
       if (!nextNode.next) {
         // console.log('in if')
-      // change the next pointer on the second to last node to null
-      currentNode.next = null;
-      // reassign tail to this modified node
-      this.tail = currentNode;
-      // decrement list size by 1
-      this.size--;
-      // return the value of the node whose next is null (tail??)
-      // console.log('list:', this);
-      // console.log('pop:', nextNode.val);
-      return nextNode;
+        // change the next pointer on the second to last node to null
+        currentNode.next = null;
+        // reassign tail to this modified node
+        this.tail = currentNode;
+        // decrement list size by 1
+        this.size--;
+        // return the value of the node whose next is null (tail??)
+        // console.log('list:', this);
+        // console.log('pop:', nextNode.val);
+        return nextNode;
       }
       currentNode = nextNode;
       nextNode = currentNode.next;
     }
   }
 
-  push (val) {
+  push(val) {
     let node = new Node(val);
     // if there is no head
     if (!this.head) {
       // assign a node with value val as the head and tail
       this.head = node;
       this.tail = this.head;
-    // if there is a head
+      // if there is a head
     } else {
       // assign the new node to the next of the tail
       this.tail.next = node;
@@ -69,7 +69,6 @@ class LinkedList {
     // return the list
     return this;
   }
-
 
   shift() {
     // if list has no head, return undefined
@@ -86,14 +85,13 @@ class LinkedList {
     // removes the head
     let shifted = this.head;
     // reassign head to the second node
-    this.head = this.head.next
+    this.head = this.head.next;
     // decrement size
     this.size--;
 
     // returns removed head
     return shifted;
   }
-
 
   unshift(val) {
     // add a new head
@@ -116,7 +114,7 @@ class LinkedList {
   }
 
   get(idx) {
-    if (this.size <= idx || idx < 0) return 'undefined';
+    if (this.size <= idx || idx < 0) return "undefined";
     let node = this.head;
     for (let i = 0; i < idx; i++) {
       node = node.next;
@@ -132,7 +130,6 @@ class LinkedList {
     // if index > size or less than 0, return false
     if (idx < 0 || idx > this.size) return false;
 
-
     let newNode = new Node(val);
     // get the node at index - 1
     let prevNode = this.get(idx - 1);
@@ -145,7 +142,6 @@ class LinkedList {
     this.size++;
     // return true
     return true;
-
   }
 
   remove(idx) {
@@ -169,7 +165,6 @@ class LinkedList {
     // return removed node
     return removed;
   }
-
 
   reverse() {
     let currentNode = this.head;
@@ -209,3 +204,87 @@ myList.pop();
 // console.log(myList.push(9));
 // console.log(myList.head.next);
 
+// class Node {
+//   constructor(val) {
+//     this.val = val;
+//     this.next = null;
+//   }
+// }
+
+// class SinglyLinkedList {
+//   constructor() {
+//     this.head = null;
+//     this.tail = null;
+//     this.size = 0;
+//   }
+
+//   push(val) {
+//     let newNode = new Node(val);
+
+//     if (!this.size) {
+//       this.head = newNode;
+//     } else {
+//       this.tail.next = newNode;
+//     }
+
+//     this.tail = newNode;
+//     this.size++;
+
+//     return this;
+//   }
+
+//   pop() {
+//     // remove the tail
+//     // return the tail
+//     // reassign the tail to the new last node
+//     if (!this.size) return undefined;
+//     // initialize a last node var
+//     let currentNode = this.head; // {val:1, next:Node}
+
+//     if (this.size === 1) {
+//       this.size = 0;
+//       this.head = null;
+//       this.tail = null;
+
+//       return currentNode;
+//     }
+
+//     let nextNode = currentNode.next; // {val:3, next:null}
+//     // traverse the list
+//     while (currentNode) {
+//       // console.log('in while loop');
+//       // if the next is null
+//       // console.log(nextNode.next);
+//       if (!nextNode.next) {
+//         // console.log('in if')
+//         // change the next pointer on the second to last node to null
+//         currentNode.next = null;
+//         // reassign tail to this modified node
+//         this.tail = currentNode;
+//         // decrement list size by 1
+//         this.size--;
+//         // return the value of the node whose next is null (tail??)
+//         // console.log('list:', this);
+//         // console.log('pop:', nextNode.val);
+//         return nextNode;
+//       }
+//       currentNode = nextNode;
+//       nextNode = currentNode.next;
+//     }
+//   }
+
+//   shift() {
+//     // if there are no nodes, return undefined
+//   }
+// }
+
+// let myNode = new Node(5);
+// console.log(myNode);
+// let newList = new SinglyLinkedList();
+// console.log(newList);
+// newList.push(5);
+// console.log(newList);
+// newList.push(4);
+// console.log(newList);
+// newList.push(3);
+// console.log(newList);
