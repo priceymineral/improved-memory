@@ -1,3 +1,25 @@
+class HashTable {
+  constructor(size = 53) {
+    this.keyMap = new Array(size);
+  }
+
+  _hash(key) {
+    let total = 0;
+    let WEIRD_PRIME = 31;
+    for (let i = 0; i < Math.min(key.length, 100); i++) {
+      let value = key.charCodeAt(i);
+      total = (total * WEIRD_PRIME + value) % arrayLen;
+    }
+    return total;
+  }
+
+  set(key, value) {
+    // hash the key, ie figure out where to store it.
+  }
+}
+
+// HASH FUNCTIONS
+
 let total = 0;
 
 total += "hello".charCodeAt(0);
