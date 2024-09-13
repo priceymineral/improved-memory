@@ -1271,7 +1271,7 @@ function minSubArrayLen(arr, num) {
   console.log("minLen:", minLen);
   // return minLen;
 }
-// WORKING SOLUTION
+// WORKING SOLUTION // min number of elements that add up to the sum
 function minSubArrayLen(nums, sum) {
   let total = 0;
   let start = 0;
@@ -1355,3 +1355,106 @@ function factorial(num) {
 }
 
 console.log("factorial: ", factorial(1));
+
+// You are given two m x n binary matrices grid1 and grid2 containing only 0's (representing water) and 1's (representing land). An island is a group of 1's connected 4-directionally (horizontal or vertical). Any cells outside of the grid are considered water cells.
+// An island in grid2 is considered a sub-island if there is an island in grid1 that contains all the cells that make up this island in grid2.
+// Return the number of islands in grid2 that are considered sub-islands.
+
+var countSubIslands = function (grid1, grid2) {
+  // how to avoid repeats
+  // initialize an island structure (decide on what structure works best)
+  // [0,0] = [0,1], [0,2], [1,2], [1,3], [1,4]
+  // [0,1] =
+  let rows = grid1.length;
+  let columns = grid1[0].length;
+  let islands = new Map();
+  let visited = Array.from({ length: rows }, () => Array(columns).fill(0));
+
+  // let connections = []
+  let checkAdj = (origArr, conn) => {
+    // console.log('origArr:', origArr)
+    // console.log('conn:', conn)
+    let i = conn[0];
+    // console.log('i', i)
+    let j = conn[1];
+    // console.log('j', j)
+
+    // check left
+    if (j - 1 >= 0) {
+      if (grid2[i][j - 1] === 1 && visited[i][j - 1] === 0) {
+        // and not visited
+        // console.log('in if 1')
+        let connections = islands.get(origArr);
+        // connections.push([i, (j - 1)])
+        //  console.log("connections 1:", connections)
+        islands.set(origArr, connections);
+        let currArr = [i, j - 1];
+        visited[i][j - 1] = 1;
+        checkAdj(origArr, [i, j - 1]);
+      }
+    }
+
+    // check right
+    // console.log(grid2[i][(j + 1)])
+    if (j + 1 < grid2[0].length) {
+      if (grid2[i][j + 1] === 1 && visited[i][j + 1] === 0) {
+        // console.log('in if 2')
+        let connections = islands.get(origArr);
+        connections.push([i, j + 1]);
+        // console.log("connnections:", connections)
+        islands.set(origArr, connections);
+        visited[i][j + 1] = 1;
+        checkAdj(origArr, [i, j + 1]);
+      }
+    }
+
+    // check up
+    if (i - 1 >= 0) {
+      if (grid2[i - 1][j] === 1 && visited[i - 1][j] === 0) {
+        // console.log('in if 3')
+        let connections = islands.get(origArr);
+        connections.push([i - 1, j]);
+        // console.log("connnections:", connections)
+        islands.set(origArr, connections);
+        visited[i - 1][j] = 1;
+        checkAdj(origArr, [i - 1, j]);
+      }
+    }
+
+    // check down
+    if (i + 1 < grid2.length) {
+      if (grid2[i + 1][j] === 1 && visited[i + 1][j] === 0) {
+        // console.log('in if 4')
+        let connections = islands.get(origArr);
+        connections.push([i + 1, j]);
+        // console.log("connnections:", connections)
+        islands.set(origArr, connections);
+        visited[i + 1][j] = 1;
+        checkAdj(origArr, [i + 1, j]);
+      }
+    }
+
+    // console.log("visited:", visited)
+  };
+
+  // iterate over grid 2 to find islands
+  for (let i = 0; i < grid2.length; i++) {
+    for (let j = 0; j < grid2[i].length; j++) {
+      if (grid2[i][j] && visited[i][j] === 0) {
+        // if it's a 1, add to map and check the adjacent
+        let key = [i, j];
+        islands.set(key, []);
+        // console.log(visited)
+        visited[i][j] = 1;
+        // console.log(visited)
+        // console.log('islands', islands)
+        checkAdj(key, [i, j]);
+        // console.log('islands', islands)
+      }
+      // break;
+    }
+    // break;
+  }
+  console.log(visited);
+  console.log(islands);
+};
