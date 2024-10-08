@@ -1517,29 +1517,38 @@ var largestLocal = function (grid) {
 // Input: x = 120
 // Output: 21
 
-var reverse = function(x) {
-  let stringX = x.toString()
+var reverse = function (x) {
+  let stringX = x.toString();
   if (stringX.length === 1) return x;
 
   let reverseString = (str) => {
-      return str.split("").reverse().join("");
-  }
+    return str.split("").reverse().join("");
+  };
 
   if (x < 1) {
-      if (stringX.length === 2) {
-       return x;   
-      } else {
-          let output = "-";
-          stringX = stringX.slice(1);
-          let reversed = reverseString(stringX);
-          output += reversed;
-          let numOutput = Number(output);
-          if (numOutput < -(2**31) || numOutput > (2**31)-1) return 0;
-          return numOutput;
-      };
+    if (stringX.length === 2) {
+      return x;
+    } else {
+      let output = "-";
+      stringX = stringX.slice(1);
+      let reversed = reverseString(stringX);
+      output += reversed;
+      let numOutput = Number(output);
+      if (numOutput < -(2 ** 31) || numOutput > 2 ** 31 - 1) return 0;
+      return numOutput;
+    }
   }
 
   let output = Number(reverseString(stringX));
-  if ( output < -(2**31) || output > (2**31)-1) return 0;
+  if (output < -(2 ** 31) || output > 2 ** 31 - 1) return 0;
   return output;
+};
+
+// 4 line answer
+var shortReverse = function (num) {
+  const reversedNumber = parseInt(
+    Math.abs(num).toString().split("").reverse().join("")
+  );
+  if (reversedNumber > 2147483647) return 0;
+  return num < 0 ? -Math.abs(reversedNumber) : reversedNumber;
 };
